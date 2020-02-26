@@ -1,36 +1,12 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 
 import { loadStripe } from '@stripe/stripe-js'
 import { useStripe, useElements, CardElement, Elements } from '@stripe/react-stripe-js'
+import stripeOptions from './lib/stripeOptions'
 
-const useOptions = () => {
-  const options = useMemo(
-    () => ({
-      style: {
-        base: {
-          fontSize: '20px',
-          color: '#424770',
-          letterSpacing: '0.025em',
-          fontFamily: 'Source Code Pro, monospace',
-          '::placeholder': {
-            color: '#aab7c4'
-          }
-        },
-        invalid: {
-          color: '#9e2146'
-        }
-      }
-    }),
-    []
-  )
-
-  return options
-}
-
-const CardForm = () => {
+const CardFormOneRow = () => {
   const stripe = useStripe()
   const elements = useElements()
-  const options = useOptions()
 
   const handleSubmit = async event => {
     event.preventDefault()
@@ -54,7 +30,7 @@ const CardForm = () => {
       <label>
       Card details
         <CardElement
-          options={options}
+          options={stripeOptions}
           onReady={() => {
             console.log('CardElement [ready]')
           }}
@@ -76,13 +52,13 @@ const CardForm = () => {
   )
 }
 
-const CardFormWithElements = ({ stripePublicKey }) => {
+const CardFormOneRowWithElements = ({ stripePublicKey }) => {
   const stripePromise = loadStripe(stripePublicKey)
   return (
     <Elements stripe={stripePromise}>
-      <CardForm />
+      <CardFormOneRow />
     </Elements>
   )
 }
 
-export default CardFormWithElements
+export default CardFormOneRowWithElements
