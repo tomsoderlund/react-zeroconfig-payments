@@ -1,0 +1,45 @@
+{
+  "name": "react-zeroconfig-payments",
+  "version": "0.1.0",
+  "description": "React payment components that require zero configuration.",
+  "author": "Tom Söderlund <tom@tomsoderlund.com>",
+  "license": "ISC",
+  "scripts": {
+    "dev": "yarn storybook",
+    "new": "touch src/components/New.js; touch src/components/New.css; touch stories/New.stories.js; echo Created component New.js, to rename do:; echo mv src/components/New.js src/components/MyComponent.js; echo mv src/components/New.css src/components/MyComponent.css; echo mv stories/New.stories.js stories/MyComponent.stories.js; echo ALSO update index.js",
+    "test": "echo 'Running Standard.js and Jasmine unit tests...\n' && yarn lint && yarn unit",
+    "lint": "standard",
+    "fix": "standard --fix",
+    "unit": "yarn prepare && node test/index.js ",
+    "prepare": "rm -rf dist && mkdir dist && babel ./src/components -d dist --copy-files",
+    "storybook": "start-storybook -p 6007",
+    "build-storybook": "build-storybook"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist/"
+  ],
+  "dependencies": {
+    "@stripe/react-stripe-js": "^1.0.3",
+    "@stripe/stripe-js": "^1.0.2",
+    "react": "^16.8.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-json-strings": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.7.4",
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/react": "^5.2.8",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^3.3.2",
+    "path": "^0.12.7",
+    "standard": "^14.3.1"
+  }
+}
