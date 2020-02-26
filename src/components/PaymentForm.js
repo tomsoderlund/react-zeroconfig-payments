@@ -8,7 +8,7 @@ const useOptions = () => {
     () => ({
       style: {
         base: {
-          fontSize: '1em',
+          fontSize: '20px',
           color: '#424770',
           letterSpacing: '0.025em',
           fontFamily: 'Source Code Pro, monospace',
@@ -76,8 +76,8 @@ const CardForm = () => {
   )
 }
 
-const CardFormWithElements = ({ children }) => {
-  const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh')
+const CardFormWithElements = ({ stripePublicKey }) => {
+  const stripePromise = loadStripe(stripePublicKey)
   return (
     <Elements stripe={stripePromise}>
       <CardForm />

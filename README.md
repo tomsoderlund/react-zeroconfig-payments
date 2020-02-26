@@ -14,6 +14,13 @@ React payment components that require _zero_ configuration.
 - [x] Keyboard/tab support
 
 
+## Stripe
+
+Uses https://github.com/stripe/react-stripe-js
+
+See CodeSandbox: https://codesandbox.io/s/react-stripe-official-q1loc
+
+
 ## Styling
 
 Styling is optional, CSS files are included but you can also use `styled-components` or similar.
