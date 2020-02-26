@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { action } from '@storybook/addon-actions'
 
-import PaymentForm from '../src/components/PaymentForm'
-import '../src/components/PaymentForm.css'
+import PaymentFormOneRow from '../src/components/PaymentFormOneRow'
+import '../src/components/PaymentFormOneRow.css'
 import '../src/components/common.css'
 
 // import { stringArray, objectArrayWithDisabled } from './data/arrays'
@@ -12,7 +12,7 @@ const STRIPE_PUBLIC_KEY = 'pk_test_6pRNASCoBOKtIshFeQd4XMUh'
 // ----- Story -----
 
 export default {
-  title: 'PaymentForm'
+  title: 'PaymentFormOneRow'
 }
 
 export const standard = () => {
@@ -24,7 +24,7 @@ export const standard = () => {
   // }
 
   return (
-    <PaymentForm
+    <PaymentFormOneRow
       stripePublicKey={STRIPE_PUBLIC_KEY}
     />)
 }
