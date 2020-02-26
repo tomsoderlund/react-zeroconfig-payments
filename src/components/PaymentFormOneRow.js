@@ -29,20 +29,9 @@ const CardFormOneRow = () => {
     <form onSubmit={handleSubmit}>
       <label>
       Card details
+        {/* Events: onReady, onChange, onBlur, onFocus */}
         <CardElement
           options={stripeOptions}
-          onReady={() => {
-            console.log('CardElement [ready]')
-          }}
-          onChange={event => {
-            console.log('CardElement [change]', event)
-          }}
-          onBlur={() => {
-            console.log('CardElement [blur]')
-          }}
-          onFocus={() => {
-            console.log('CardElement [focus]')
-          }}
         />
       </label>
       <button type='submit' disabled={!stripe}>

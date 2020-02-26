@@ -2,9 +2,9 @@ import React from 'react'
 
 import { loadStripe } from '@stripe/stripe-js'
 import { useStripe, useElements, CardNumberElement, CardCvcElement, CardExpiryElement, Elements } from '@stripe/react-stripe-js'
-import stripeOptions from './lib/stripeOptions'
+import DEFAULT_STRIPE_OPTIONS from './lib/stripeOptions'
 
-const CardFormSplit = () => {
+const CardFormSplit = ({ stripeOptions, className, onResponse }) => {
   const stripe = useStripe()
   const elements = useElements()
 
@@ -22,63 +22,31 @@ const CardFormSplit = () => {
       card: elements.getElement(CardNumberElement)
     })
 
-    console.log('[PaymentMethod]', payload)
+    onResponse(payload)
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className={className}
+    >
       <label>
         Card number
+        {/* Events: onReady, onChange, onBlur, onFocus */}
         <CardNumberElement
           options={stripeOptions}
-          onReady={() => {
-            console.log('CardNumberElement [ready]')
-          }}
-          onChange={event => {
-            console.log('CardNumberElement [change]', event)
-          }}
-          onBlur={() => {
-            console.log('CardNumberElement [blur]')
-          }}
-          onFocus={() => {
-            console.log('CardNumberElement [focus]')
-          }}
         />
       </label>
       <label>
         Expiration date
         <CardExpiryElement
           options={stripeOptions}
-          onReady={() => {
-            console.log('CardNumberElement [ready]')
-          }}
-          onChange={event => {
-            console.log('CardNumberElement [change]', event)
-          }}
-          onBlur={() => {
-            console.log('CardNumberElement [blur]')
-          }}
-          onFocus={() => {
-            console.log('CardNumberElement [focus]')
-          }}
         />
       </label>
       <label>
         CVC
         <CardCvcElement
           options={stripeOptions}
-          onReady={() => {
-            console.log('CardNumberElement [ready]')
-          }}
-          onChange={event => {
-            console.log('CardNumberElement [change]', event)
-          }}
-          onBlur={() => {
-            console.log('CardNumberElement [blur]')
-          }}
-          onFocus={() => {
-            console.log('CardNumberElement [focus]')
-          }}
         />
       </label>
       <button type='submit' disabled={!stripe}>
@@ -88,11 +56,15 @@ const CardFormSplit = () => {
   )
 }
 
-const CardFormSplitWithElements = ({ stripePublicKey }) => {
+const CardFormSplitWithElements = ({ stripePublicKey, stripeOptions = DEFAULT_STRIPE_OPTIONS, className, onResponse }) => {
   const stripePromise = loadStripe(stripePublicKey)
   return (
     <Elements stripe={stripePromise}>
-      <CardFormSplit />
+      <CardFormSplit
+        stripeOptions={stripeOptions}
+        className={className}
+        onResponse={onResponse}
+      />
     </Elements>
   )
 }
