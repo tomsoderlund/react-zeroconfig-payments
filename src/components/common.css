@@ -9,11 +9,110 @@ body {
   padding: 1em;
 }
 
+label {
+  display: block;
+  margin: 0.5em 0;
+}
+
+/* #NiceAndSimple: Button - https://codepen.io/tomsoderlund/pen/qqyzqp */
 button,
-input,
-select {
+.button {
+  position: relative;
+  background-color: dodgerblue;
+  color: white;
+  border-radius: 0.2em;
+  border: none;
+  box-shadow: 0 0.125em 0.125em rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
   font-family: inherit;
   font-size: inherit;
-  padding: 0.6em 1em;
-  border-radius: 0.3em;
+  line-height: normal;
+  font-weight: bold;
+  text-align: center;
+  outline: none;
+  padding: 0.6em;
+  margin: 0.2em;
+  transition: all 0.1s;
+  /* min-width: 15em; */
+}
+button:focus:not(:disabled),
+.button:focus:not(:disabled) {
+  opacity: 0.8;
+}
+button:hover:not(:disabled),
+.button:hover:not(:disabled) {
+  opacity: 0.8;
+  top: -0.1em;
+  box-shadow: 0 0.2em 0.1em rgba(0, 0, 0, 0.2);
+}
+button:hover:active,
+.button:hover:active {
+  top: 0.1em;
+  box-shadow: 0 0.02em 0.125em rgba(0, 0, 0, 0.4);
+  transition: all 0.05s;
+}
+button:disabled,
+.button:disabled {
+  cursor: initial;
+  background-color: silver;
+}
+a.button {
+  text-decoration: none;
+}
+
+button.primary:not(:disabled) {
+  background-color: #FF3E00;
+}
+
+/* #NiceAndSimple: Input and Dropdown Menu - https://codepen.io/tomsoderlund/pen/GNBbWz */
+input,
+.input,
+textarea,
+select {
+  -webkit-appearance: none;
+  background-color: white;
+  color: inherit;
+  outline: none;
+  resize: none;
+  box-sizing: border-box;
+  border-radius: 0.2em;
+  border: 1px solid lightgray;
+  box-shadow: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0.6em;
+  margin-right: 0.6em;
+  min-width: 15em;
+}
+input::placeholder,
+textarea::placeholder {
+  color: lightgray;
+}
+input:hover:not(:disabled):not(:focus),
+.input:hover:not(:disabled):not(:focus),
+textarea:hover:not(:disabled):not(:focus),
+select:hover:not(:disabled):not(:focus) {
+  border-color: silver;
+}
+input:focus,
+.input:focus,
+textarea:focus,
+select:focus {
+  border-color: darkgray;
+}
+input:read-only,
+textarea:read-only {
+  color: darkgray;
+}
+input:disabled,
+.input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: whitesmoke;
+  color: darkgray;  
 }

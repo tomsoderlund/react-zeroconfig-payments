@@ -1,16 +1,17 @@
+// https://stripe.com/docs/js/elements_object/create_element?type=card#elements_create-options
 export default {
   style: {
     base: {
-      fontSize: '20px',
-      color: '#424770',
-      letterSpacing: '0.025em',
-      fontFamily: 'Source Code Pro, monospace',
+      fontSize: '14px',
+      fontWeight: 'bold',
+      color: 'dodgerblue',
+      fontFamily: '"Helvetica Neue", sans-serif',
       '::placeholder': {
-        color: '#aab7c4'
+        color: 'lightgray'
       }
     },
     invalid: {
-      color: '#9e2146'
+      color: 'tomato'
     }
   }
 }
