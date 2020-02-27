@@ -9,9 +9,21 @@ body {
   padding: 1em;
 }
 
-label {
+label:not(.menu-item) {
   display: block;
   margin: 0.5em 0;
+}
+
+label:not(.menu-item) input {
+  display: block;
+}
+
+.menu-item {
+  cursor: pointer;
+}
+
+.menu-item.disabled {
+  color: lightgray;
 }
 
 /* #NiceAndSimple: Button - https://codepen.io/tomsoderlund/pen/qqyzqp */
@@ -69,7 +81,8 @@ button.primary:not(:disabled) {
 }
 
 /* #NiceAndSimple: Input and Dropdown Menu - https://codepen.io/tomsoderlund/pen/GNBbWz */
-input,
+.StripeElement,
+input:not([type="radio"]),
 .input,
 textarea,
 select {
@@ -87,12 +100,13 @@ select {
   font-weight: inherit;
   padding: 0.6em;
   margin-right: 0.6em;
-  min-width: 15em;
+  width: 15em;
 }
 input::placeholder,
 textarea::placeholder {
   color: lightgray;
 }
+.StripeElement:hover,
 input:hover:not(:disabled):not(:focus),
 .input:hover:not(:disabled):not(:focus),
 textarea:hover:not(:disabled):not(:focus),
