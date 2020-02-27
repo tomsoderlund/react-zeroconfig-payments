@@ -24,6 +24,6 @@ export const OneRowForm = () => {
 
   return (
     <CardFormOneRow
-      stripePublicKey={STRIPE_PUBLIC_KEY}
+      stripeAppPublicKey={STRIPE_PUBLIC_KEY}
     />)
 }

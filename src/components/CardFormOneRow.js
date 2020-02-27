@@ -41,8 +41,8 @@ const CardFormOneRow = () => {
   )
 }
 
-const CardFormOneRowWithElements = ({ stripePublicKey }) => {
-  const stripePromise = loadStripe(stripePublicKey)
+const CardFormOneRowWithElements = ({ stripeAppPublicKey }) => {
+  const stripePromise = loadStripe(stripeAppPublicKey)
   return (
     <Elements stripe={stripePromise}>
       <CardFormOneRow />

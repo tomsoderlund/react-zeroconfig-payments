@@ -29,7 +29,7 @@ export const SplitForm = () => {
       <p>Test card number: 4242424242424242</p>
 
       <CardFormSplit
-        stripePublicKey={STRIPE_PUBLIC_KEY}
+        stripeAppPublicKey={STRIPE_PUBLIC_KEY}
         onResponse={handleResponse}
       />
 

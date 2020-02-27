@@ -56,8 +56,8 @@ const CardFormSplit = ({ stripeOptions, className, onResponse }) => {
   )
 }
 
-const CardFormSplitWithElements = ({ stripePublicKey, stripeOptions = DEFAULT_STRIPE_OPTIONS, className, onResponse }) => {
-  const stripePromise = loadStripe(stripePublicKey)
+const CardFormSplitWithElements = ({ stripeAppPublicKey, stripeOptions = DEFAULT_STRIPE_OPTIONS, className, onResponse }) => {
+  const stripePromise = loadStripe(stripeAppPublicKey)
   return (
     <Elements stripe={stripePromise}>
       <CardFormSplit
