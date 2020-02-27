@@ -4,7 +4,7 @@ import { loadStripe } from '@stripe/stripe-js'
 import { useStripe, useElements, CardNumberElement, CardCvcElement, CardExpiryElement, Elements } from '@stripe/react-stripe-js'
 import DEFAULT_STRIPE_OPTIONS from './lib/stripeOptions'
 
-const CardFormSplit = ({ stripeOptions, className, onResponse }) => {
+export const CardFormSplitWithoutElements = ({ stripeOptions, className, onResponse }) => {
   const stripe = useStripe()
   const elements = useElements()
 
@@ -60,7 +60,7 @@ const CardFormSplitWithElements = ({ stripeAppPublicKey, stripeOptions = DEFAULT
   const stripePromise = loadStripe(stripeAppPublicKey)
   return (
     <Elements stripe={stripePromise}>
-      <CardFormSplit
+      <CardFormSplitWithoutElements
         stripeOptions={stripeOptions}
         className={className}
         onResponse={onResponse}

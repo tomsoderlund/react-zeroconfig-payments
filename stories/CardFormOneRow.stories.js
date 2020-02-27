@@ -6,7 +6,7 @@ import '../src/components/common.css'
 
 // import { stringArray, objectArrayWithDisabled } from './data/arrays'
 
-const STRIPE_PUBLIC_KEY = 'pk_test_6pRNASCoBOKtIshFeQd4XMUh'
+const STRIPE_APP_PUBLIC_KEY = 'pk_test_6pRNASCoBOKtIshFeQd4XMUh'
 
 // ----- Story -----
 
@@ -24,6 +24,6 @@ export const OneRowForm = () => {
 
   return (
     <CardFormOneRow
-      stripeAppPublicKey={STRIPE_PUBLIC_KEY}
+      stripeAppPublicKey={STRIPE_APP_PUBLIC_KEY}
     />)
 }
