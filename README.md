@@ -22,8 +22,8 @@ See CodeSandbox: https://codesandbox.io/s/react-stripe-official-q1loc
 
 ### Stripe concepts
 
-- PaymentIntent: customer’s intent to pay. Can change along the customer journey.
-- PaymentMethod (e.g. a card): `id: 'pm_1GGSAd2eZvKYlo2C7DhiKkSH'`
+- PaymentIntent (ID prefix: `pi_`): customer’s intent to pay. Can change along the customer journey.
+- PaymentMethod (ID prefix: `pm_`): e.g. a payment card.
 
 ### How to accept a payment
 
@@ -57,23 +57,26 @@ Then `client_secret` is used in Step 3 below.
 
 You get a PaymentMethod object back:
 
-    id: 'pm_1GGSAd2eZvKYlo2C7DhiKkSH'
+    {
+      id: 'pm_1GGSAd2eZvKYlo2C7DhiKkSH',
+      ...
+    }
 
 #### 3. Submit the payment to Stripe (client)
 
-  stripe.confirmCardPayment(
-    clientSecret,
-    {
-      // OR use PaymentMethod ID:
-      // payment_method: 'pm_1GGSAd2eZvKYlo2C7DhiKkSH'
-      payment_method: {
-        card: card,
-        billing_details: {
-          name: 'Jenny Rosen'
+    stripe.confirmCardPayment(
+      clientSecret,
+      {
+        // OR use PaymentMethod ID:
+        // payment_method: 'pm_1GGSAd2eZvKYlo2C7DhiKkSH'
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: 'Jenny Rosen'
+          }
         }
       }
-    }
-  )
+    )
 
 `billing_details` object:
 
@@ -83,6 +86,10 @@ You get a PaymentMethod object back:
   - phone
   - address
     - postal_code
+
+#### Error handling
+
+Stripe methods return `{ error }` if something goes wrong.
 
 
 ## Styling
