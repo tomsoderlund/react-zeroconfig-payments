@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { action } from '@storybook/addon-actions'
 
-import PaymentFormSplit from '../src/components/PaymentFormSplit'
+import CardFormSplit from '../src/components/CardFormSplit'
 import ShowResponse from '../src/helpComponents/ShowResponse'
 import '../src/helpComponents/ShowResponse.css'
 import '../src/components/common.css'
@@ -13,7 +13,7 @@ const STRIPE_PUBLIC_KEY = 'pk_test_6pRNASCoBOKtIshFeQd4XMUh'
 // ----- Story -----
 
 export default {
-  title: 'PaymentFormSplit'
+  title: 'CardFormSplit'
 }
 
 export const SplitForm = () => {
@@ -28,7 +28,7 @@ export const SplitForm = () => {
     <div>
       <p>Test card number: 4242424242424242</p>
 
-      <PaymentFormSplit
+      <CardFormSplit
         stripePublicKey={STRIPE_PUBLIC_KEY}
         onResponse={handleResponse}
       />

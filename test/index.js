@@ -1,3 +1,3 @@
-const { PaymentFormOneRow } = require('../dist')
+const { CardFormOneRow } = require('../dist')
 
-console.log('Test:', { PaymentFormOneRow })
+console.log('Test:', { CardFormOneRow })

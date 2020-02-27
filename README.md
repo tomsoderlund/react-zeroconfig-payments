@@ -98,16 +98,16 @@ Styling is optional, CSS files are included but you can also use `styled-compone
 
 How to import CSS file, example:
 
-    import '../node_modules/react-zeroconfig-payments/dist/PaymentFormOneRow.css'
+    import '../node_modules/react-zeroconfig-payments/dist/CardFormOneRow.css'
 
 
 ## Components
 
 See the Storybook stories in `/stories` to see how the components are used in code, including more advanced use cases.
 
-### PaymentFormOneRow
+### CardFormOneRow
 
-    <PaymentFormOneRow
+    <CardFormOneRow
       onSearch={async (searchText) => { return foundMatch }}
       onSubmit={handleSubmit}
 
@@ -115,7 +115,7 @@ See the Storybook stories in `/stories` to see how the components are used in co
       canSubmitAny={true}
     />
 
-![PaymentFormOneRow](docs/PaymentFormOneRow.png)
+![CardFormOneRow](docs/CardFormOneRow.png)
 
 ## Events
 

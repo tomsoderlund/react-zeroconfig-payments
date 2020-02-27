@@ -1,2 +1,2 @@
-export { default as PaymentFormOneRow } from './PaymentFormOneRow'
-export { default as PaymentFormSplit } from './PaymentFormSplit'
+export { default as CardFormOneRow } from './CardFormOneRow'
+export { default as CardFormSplit } from './CardFormSplit'
