@@ -20,6 +20,70 @@ Uses https://github.com/stripe/react-stripe-js
 
 See CodeSandbox: https://codesandbox.io/s/react-stripe-official-q1loc
 
+### Stripe concepts
+
+- PaymentIntent: customer’s intent to pay. Can change along the customer journey.
+- PaymentMethod (e.g. a card): `id: 'pm_1GGSAd2eZvKYlo2C7DhiKkSH'`
+
+### How to accept a payment
+
+https://stripe.com/docs/payments/accept-a-payment
+
+#### 1. Start payment process – create PaymentIntent (server)
+
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: 1000,
+      currency: 'sek',
+      payment_method_types: ['card'],
+      receipt_email: 'jenny.rosen@example.com'
+    })
+
+Returns:
+
+    {
+      id: 'pi_1GGSK3AdCgUa7NQtInbwDOxY',
+      client_secret: 'pi_1GGSK3AdCgUa7NQtInbwDOxY_secret_nwUxP04882diDN0hbumcNtCEl',
+      ...
+    }
+
+Then `client_secret` is used in Step 3 below.
+
+#### 2. Collect payment/card details – create PaymentMethod (client)
+
+    const payload = await stripe.createPaymentMethod({
+      type: 'card',
+      card: elements.getElement(CardNumberElement)
+    })
+
+You get a PaymentMethod object back:
+
+    id: 'pm_1GGSAd2eZvKYlo2C7DhiKkSH'
+
+#### 3. Submit the payment to Stripe (client)
+
+  stripe.confirmCardPayment(
+    clientSecret,
+    {
+      // OR use PaymentMethod ID:
+      // payment_method: 'pm_1GGSAd2eZvKYlo2C7DhiKkSH'
+      payment_method: {
+        card: card,
+        billing_details: {
+          name: 'Jenny Rosen'
+        }
+      }
+    }
+  )
+
+`billing_details` object:
+
+- billing_details
+  - name
+  - email
+  - phone
+  - address
+    - postal_code
+
 
 ## Styling
 
