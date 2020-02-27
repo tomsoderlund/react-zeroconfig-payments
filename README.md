@@ -7,6 +7,7 @@ React payment components that require _zero_ configuration.
 
     yarn add react-zeroconfig-payments  # or: npm install react-zeroconfig-payments
 
+Create an `.env` file for testing (see `.env.example`).
 
 ## Accessibility
 
@@ -31,9 +32,13 @@ https://stripe.com/docs/payments/accept-a-payment
 
 #### 1. Start payment process – create PaymentIntent (server)
 
+https://stripe.com/docs/api/payment_intents/create
+
     const paymentIntent = await stripe.paymentIntents.create({
       amount: 1000,
       currency: 'sek',
+      // Optional:
+      customer: 'cus_GoO...',
       payment_method_types: ['card'],
       receipt_email: 'jenny.rosen@example.com'
     })
@@ -50,6 +55,8 @@ Then `client_secret` is used in Step 3 below.
 
 #### 2. Collect payment/card details – create PaymentMethod (client)
 
+https://stripe.com/docs/js/payment_intents/create_payment_method
+
     const payload = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardNumberElement)
@@ -64,6 +71,8 @@ You get a PaymentMethod object back:
 
 #### 3. Submit the payment to Stripe (client)
 
+https://stripe.com/docs/js/payment_intents/confirm_card_payment
+
     stripe.confirmCardPayment(
       clientSecret,
       {
@@ -74,18 +83,41 @@ You get a PaymentMethod object back:
           billing_details: {
             name: 'Jenny Rosen'
           }
-        }
+        },
+        // receipt_email
+        // shipping
+        // save_payment_method
+        // setup_future_usage
+        // return_url
       }
     )
 
-`billing_details` object:
+#### Data formats
+
+##### billing_details
+
+https://stripe.com/docs/api/payment_methods/create
 
 - billing_details
   - name
   - email
   - phone
   - address
+    - country (ISO code)
+    - state
+    - city
     - postal_code
+    - line1, line2
+
+##### Tax ID (`tax_id`)
+
+Added **after** customer is created.
+
+https://stripe.com/docs/api/customer_tax_ids/object#tax_id_object-type
+
+- tax_id
+  - type
+  - value
 
 #### Error handling
 
