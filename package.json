@@ -6,7 +6,7 @@
   "license": "ISC",
   "scripts": {
     "dev": "yarn storybook",
-    "new": "touch src/components/New.js; touch src/components/New.css; touch stories/New.stories.js; echo Created component New.js, to rename do:; echo mv src/components/New.js src/components/MyComponent.js; echo mv src/components/New.css src/components/MyComponent.css; echo mv stories/New.stories.js stories/MyComponent.stories.js; echo ALSO update index.js",
+    "new": "touch src/components/New.js; touch src/components/New.css; touch stories/New.stories.js; echo ADD NEW COMPONENT HERE >> src/components/index.js; echo Created component New.js, to rename do:; echo mv src/components/New.js src/components/MyComponent.js; echo mv src/components/New.css src/components/MyComponent.css; echo mv stories/New.stories.js stories/MyComponent.stories.js; echo ALSO update index.js",
     "test": "echo 'Running Standard.js and Jasmine unit tests...\n' && yarn lint && yarn unit",
     "lint": "standard",
     "fix": "standard --fix",
