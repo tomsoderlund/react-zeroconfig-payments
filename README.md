@@ -2,6 +2,8 @@
 
 React payment components that require _zero_ configuration.
 
+See also https://github.com/tomsoderlund/react-zeroconfig-components
+
 
 ## Installation
 
