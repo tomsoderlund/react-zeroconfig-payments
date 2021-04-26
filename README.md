@@ -92,9 +92,9 @@ https://stripe.com/docs/js/payment_intents/confirm_card_payment
       }
     )
 
-#### Data formats
+### Data formats
 
-##### billing_details
+#### billing_details
 
 https://stripe.com/docs/api/payment_methods/create
 
@@ -109,7 +109,7 @@ https://stripe.com/docs/api/payment_methods/create
     - postal_code
     - line1, line2
 
-##### Tax ID (`tax_id`)
+#### Tax ID (`tax_id`)
 
 Added **after** customer is created.
 
@@ -119,7 +119,7 @@ https://stripe.com/docs/api/customer_tax_ids/object#tax_id_object-type
   - type
   - value
 
-#### Error handling
+### Error handling
 
 Stripe methods return `{ error }` if something goes wrong.
 
