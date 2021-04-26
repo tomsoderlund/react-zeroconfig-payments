@@ -9,10 +9,17 @@ React payment components that require _zero_ configuration.
 
 Create an `.env` file for testing (see `.env.example`).
 
+
 ## Accessibility
 
 - [x] All components use `button` where applicable
 - [x] Keyboard/tab support
+- Payment systems:
+  - [x] Stripe
+    - [ ] One-time payments
+    - [ ] Recurring subscriptions
+  - [ ] Paddle
+  - [ ] ChargeBee
 
 
 ## Stripe
@@ -122,6 +129,14 @@ https://stripe.com/docs/api/customer_tax_ids/object#tax_id_object-type
 ### Error handling
 
 Stripe methods return `{ error }` if something goes wrong.
+
+
+## Paddle (coming later)
+
+https://developer.paddle.com/
+
+
+## ChargeBee (coming later?)
 
 
 ## Styling
