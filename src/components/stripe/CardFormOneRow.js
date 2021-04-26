@@ -2,7 +2,7 @@ import React from 'react'
 
 import { loadStripe } from '@stripe/stripe-js'
 import { useStripe, useElements, CardElement, Elements } from '@stripe/react-stripe-js'
-import stripeOptions from '../lib/stripeOptions'
+import stripeOptions from '../../lib/stripeOptions'
 
 const CardFormOneRowWithoutElements = () => {
   const stripe = useStripe()

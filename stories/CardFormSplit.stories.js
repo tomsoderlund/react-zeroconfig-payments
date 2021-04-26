@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { action } from '@storybook/addon-actions'
 
-import CardFormSplit from '../src/components/CardFormSplit'
+import CardFormSplit from '../src/components/stripe/CardFormSplit'
 import ShowResponse from '../src/helpComponents/ShowResponse'
 import '../src/helpComponents/ShowResponse.css'
-import '../src/components/common.css'
+import '../src/components/common/common.css'
 
 // import { stringArray, objectArrayWithDisabled } from './data/arrays'
 

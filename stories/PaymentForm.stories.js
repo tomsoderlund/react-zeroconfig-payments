@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { action } from '@storybook/addon-actions'
 
-import PaymentForm from '../src/components/PaymentForm'
+import PaymentForm from '../src/components/stripe/PaymentForm'
 import ShowResponse from '../src/helpComponents/ShowResponse'
 import '../src/helpComponents/ShowResponse.css'
-import '../src/components/common.css'
+import '../src/components/common/common.css'
 
 // import { stringArray, objectArrayWithDisabled } from './data/arrays'
 

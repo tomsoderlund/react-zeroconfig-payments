@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import { useStripe, Elements } from '@stripe/react-stripe-js'
 
-import ContactInfoForm from './ContactInfoForm'
+import ContactInfoForm from '../common/ContactInfoForm'
 import CardFormSplit from './CardFormSplit'
 
 const PaymentFormWithoutElements = ({ stripeAppPublicKey, stripePaymentIntent, companyRequired, onResponse }) => {

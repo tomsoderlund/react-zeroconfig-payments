@@ -2,7 +2,7 @@ import React from 'react'
 
 import { loadStripe } from '@stripe/stripe-js'
 import { useStripe, useElements, CardNumberElement, CardCvcElement, CardExpiryElement, Elements } from '@stripe/react-stripe-js'
-import DEFAULT_STRIPE_OPTIONS from '../lib/stripeOptions'
+import DEFAULT_STRIPE_OPTIONS from '../../lib/stripeOptions'
 
 export const CardFormSplitWithoutElements = ({ stripeOptions, className, onResponse }) => {
   const stripe = useStripe()
