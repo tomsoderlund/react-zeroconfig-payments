@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { action } from '@storybook/addon-actions'
 
 import CardFormSplit from '../src/components/stripe/CardFormSplit'
-import ShowResponse from '../src/helpComponents/ShowResponse'
-import '../src/helpComponents/ShowResponse.css'
-import '../src/components/common/common.css'
+import ShowResponse from './helpComponents/ShowResponse'
+import './helpComponents/ShowResponse.css'
+import './styles.css'
 
 // import { stringArray, objectArrayWithDisabled } from './data/arrays'
 

@@ -2,7 +2,7 @@ import React from 'react'
 // import { action } from '@storybook/addon-actions'
 
 import CardFormOneRow from '../src/components/stripe/CardFormOneRow'
-import '../src/components/common/common.css'
+import './styles.css'
 
 // import { stringArray, objectArrayWithDisabled } from './data/arrays'
 
