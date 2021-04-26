@@ -191,9 +191,7 @@ Preview components in Storybook:
 
     yarn storybook
 
-...then open http://localhost:6006/ in your browser.
-
-![storybook](docs/storybook.jpg)
+...then open http://localhost:6007/ in your browser.
 
 ### How to build and deploy
 
