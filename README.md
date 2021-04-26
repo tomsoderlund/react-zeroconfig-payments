@@ -18,7 +18,8 @@ Create an `.env` file for testing (see `.env.example`).
     - [ ] Recurring subscriptions
   - [ ] Paddle
   - [ ] ChargeBee
-- Accessibility
+- [ ] API mockup on http://localhost:6007/api/payments/123 (see `.storybook/middleware.js`)
+- Accessibility:
   - [x] All components use `button` where applicable
   - [x] Keyboard/tab support
 
