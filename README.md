@@ -10,16 +10,55 @@ React payment components that require _zero_ configuration.
 Create an `.env` file for testing (see `.env.example`).
 
 
-## Accessibility
+## Features
 
-- [x] All components use `button` where applicable
-- [x] Keyboard/tab support
 - Payment systems:
   - [x] Stripe
     - [ ] One-time payments
     - [ ] Recurring subscriptions
   - [ ] Paddle
   - [ ] ChargeBee
+- Accessibility
+  - [x] All components use `button` where applicable
+  - [x] Keyboard/tab support
+
+
+## Components
+
+See the Storybook stories in `/stories` to see how the components are used in code, including more advanced use cases.
+
+### CardFormOneRow
+
+    <CardFormOneRow
+      {...props docs coming soon}
+    />
+
+![CardFormOneRow](docs/CardFormOneRow.png)
+
+### CardFormSplit
+
+    <CardFormSplit
+      {...props docs coming soon}
+    />
+
+![CardFormSplit](docs/CardFormSplit.png)
+
+### PaymentForm
+
+    <PaymentForm
+      {...props docs coming soon}
+    />
+
+![PaymentForm](docs/PaymentForm.png)
+
+
+## Styling
+
+Styling is optional, CSS files are included but you can also use `styled-components` or similar.
+
+How to import CSS file, example:
+
+    import '../node_modules/react-zeroconfig-payments/dist/CardFormOneRow.css'
 
 
 ## Stripe
@@ -137,42 +176,6 @@ https://developer.paddle.com/
 
 
 ## ChargeBee (coming later?)
-
-
-## Styling
-
-Styling is optional, CSS files are included but you can also use `styled-components` or similar.
-
-How to import CSS file, example:
-
-    import '../node_modules/react-zeroconfig-payments/dist/CardFormOneRow.css'
-
-
-## Components
-
-See the Storybook stories in `/stories` to see how the components are used in code, including more advanced use cases.
-
-### CardFormOneRow
-
-    <CardFormOneRow
-      onSearch={async (searchText) => { return foundMatch }}
-      onSubmit={handleSubmit}
-
-      placeholder='Type here to search'
-      canSubmitAny={true}
-    />
-
-![CardFormOneRow](docs/CardFormOneRow.png)
-
-## Events
-
-- `onAdd`
-- `onChange`
-- `onClose`
-- `onRemove`
-- `onSearch`
-- `onSelect`
-- `onSubmit`
 
 
 ## Developing components
