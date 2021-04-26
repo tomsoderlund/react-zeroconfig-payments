@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { RadioButtons } from 'react-zeroconfig-components'
+import RadioButtons from './RadioButtons'
 
 /*
 - Credit card
