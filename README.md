@@ -9,6 +9,8 @@ See also https://github.com/tomsoderlund/react-zeroconfig-components
 
     yarn add react-zeroconfig-payments  # or: npm install react-zeroconfig-payments
 
+### Configuration
+
 Create an `.env` file for testing (see `.env.example`).
 
 
