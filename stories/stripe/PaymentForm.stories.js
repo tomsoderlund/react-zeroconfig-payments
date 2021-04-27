@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { action } from '@storybook/addon-actions'
 
-import PaymentForm from '../src/components/stripe/PaymentForm'
-import ShowResponse from './helpComponents/ShowResponse'
-import './helpComponents/ShowResponse.css'
-import './styles.css'
+import '../styles.css'
+import PaymentForm from '../../src/components/stripe/PaymentForm'
+import ShowResponse from '../helpComponents/ShowResponse'
+import '../helpComponents/ShowResponse.css'
 
 // import { stringArray, objectArrayWithDisabled } from './data/arrays'
 
@@ -24,7 +24,7 @@ console.log('process.env:', process.env)
 // ----- Story -----
 
 export default {
-  title: 'PaymentForm'
+  title: 'Stripe/PaymentForm'
 }
 
 export const standard = () => {

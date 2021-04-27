@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { action } from '@storybook/addon-actions'
 
-import CardFormSplit from '../src/components/stripe/CardFormSplit'
-import ShowResponse from './helpComponents/ShowResponse'
-import './helpComponents/ShowResponse.css'
-import './styles.css'
+import '../styles.css'
+import CardFormSplit from '../../src/components/stripe/CardFormSplit'
+import ShowResponse from '../helpComponents/ShowResponse'
+import '../helpComponents/ShowResponse.css'
 
 // import { stringArray, objectArrayWithDisabled } from './data/arrays'
 
@@ -13,7 +13,7 @@ const STRIPE_APP_PUBLIC_KEY = 'pk_test_6pRNASCoBOKtIshFeQd4XMUh'
 // ----- Story -----
 
 export default {
-  title: 'CardFormSplit'
+  title: 'Stripe/CardFormSplit'
 }
 
 export const SplitForm = () => {
