@@ -3,6 +3,8 @@
  * Based on https://dev.to/mattc/how-to-mock-api-calls-in-storybook-1762
  */
 
+require('dotenv').config() // for .env config
+
 const bodyParser = require('body-parser')
 
 const expressMiddleWare = (router) => {
@@ -19,4 +21,4 @@ const expressMiddleWare = (router) => {
 
 module.exports = expressMiddleWare
 
-console.log('\nSee API on http://localhost:6007/api/payments/123\n')
+console.log(`\nSee mockup API on: http://localhost:6007/api/payments/123\nSTRIPE_APP_PUBLIC_KEY: ${process.env.STRIPE_APP_PUBLIC_KEY}\n`)
