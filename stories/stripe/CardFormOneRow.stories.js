@@ -4,10 +4,6 @@ import React from 'react'
 import '../styles.css'
 import CardFormOneRow from '../../src/components/stripe/CardFormOneRow'
 
-// import { stringArray, objectArrayWithDisabled } from './data/arrays'
-
-const STRIPE_APP_PUBLIC_KEY = 'pk_test_6pRNASCoBOKtIshFeQd4XMUh'
-
 // ----- Story -----
 
 export default {
@@ -24,6 +20,6 @@ export const OneRowForm = () => {
 
   return (
     <CardFormOneRow
-      stripeAppPublicKey={STRIPE_APP_PUBLIC_KEY}
+      stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
     />)
 }
