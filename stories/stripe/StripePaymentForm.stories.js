@@ -13,7 +13,7 @@ export default {
   title: 'Stripe/StripePaymentForm'
 }
 
-const Template = ({ oneRow }) => {
+const Template = ({ oneRow, buttonLabel }) => {
   const [response, setResponse] = useState()
 
   const handleResponse = (response) => {
@@ -33,6 +33,7 @@ const Template = ({ oneRow }) => {
         companyRequired={false}
         onResponse={handleResponse}
         oneRow={oneRow}
+        buttonLabel={buttonLabel}
       />
 
       <ShowResponse
@@ -49,5 +50,11 @@ export const Default = () => (
 export const OneRow = () => (
   <Template
     oneRow
+  />
+)
+
+export const ButtonLabel = () => (
+  <Template
+    buttonLabel='Pay €{amountDecimals}'
   />
 )

@@ -28,6 +28,8 @@ const StripePaymentForm = ({
   const [paymentIntent, setPaymentIntent] = useState()
   const [contactInfo, setContactInfo] = useState()
 
+  const buttonLabelFormatted = buttonLabel ? buttonLabel.replace('{amountDecimals}', amountDecimals) : undefined
+
   // TODO: move to CardForm?
   const createOrUpdatePaymentIntent = async (newPaymentIntent = {}) => {
     const url = paymentIntent?.id
@@ -92,7 +94,7 @@ const StripePaymentForm = ({
       <StripeCardForm
         stripeAppPublicKey={stripeAppPublicKey}
         onResponse={handleStartPayment}
-        buttonLabel={buttonLabel}
+        buttonLabel={buttonLabelFormatted}
         oneRow={oneRow}
       />
     </>
