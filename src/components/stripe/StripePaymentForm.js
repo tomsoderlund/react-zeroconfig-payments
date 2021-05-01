@@ -8,10 +8,10 @@ import StripeCardFormSplit from './StripeCardFormSplit'
 const StripePaymentFormWithoutElements = ({ stripeAppPublicKey, stripePaymentIntent, companyRequired, onResponse }) => {
   const stripe = useStripe()
   const [currentPaymentMethod, setCurrentPaymentMethod] = useState(stripePaymentIntent.payment_method)
-  const [currentBillingDetails, setCurrentBillingDetails] = useState()
+  const [currentContactInfo, setCurrentContactInfo] = useState()
 
   const handleContactInfoChange = (contactInfo) => {
-    setCurrentBillingDetails(contactInfo)
+    setCurrentContactInfo(contactInfo)
   }
 
   const handleCardUpdated = ({ paymentMethod, error }) => {
@@ -31,7 +31,7 @@ const StripePaymentFormWithoutElements = ({ stripeAppPublicKey, stripePaymentInt
     )
   }
 
-  console.log('StripePaymentForm:', { stripePaymentIntent, currentPaymentMethod, currentBillingDetails })
+  console.log('StripePaymentForm:', { stripePaymentIntent, currentPaymentMethod, currentContactInfo })
 
   return (
     <div>
