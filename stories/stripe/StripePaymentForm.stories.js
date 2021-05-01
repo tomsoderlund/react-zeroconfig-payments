@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { action } from '@storybook/addon-actions'
 
+import makeRestRequest from '../helpComponents/makeRestRequest'
+
 import '../styles.css'
 import StripePaymentForm from '../../src/components/stripe/StripePaymentForm'
 import ShowResponse from '../helpComponents/ShowResponse'
@@ -19,11 +21,7 @@ export const standard = () => {
 
   useEffect(() => {
     async function fetchPaymentIntent () {
-      const result = await window.fetch('/api/stripe/paymentIntents', {
-        method: 'POST',
-        headers: { Accept: 'application/json', 'Content-Type': 'application/json' }
-      })
-        .then(res => res.json())
+      const result = await makeRestRequest('POST', '/api/stripe/paymentIntents', { amount: 100 })
       setPaymentIntent(result)
     }
     fetchPaymentIntent()
