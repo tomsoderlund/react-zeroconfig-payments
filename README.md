@@ -36,10 +36,10 @@ See [“Example server backend”](#example-server-backend) below.
 - Payment systems:
   - [x] Stripe
     - [x] One-time payments
+      - [ ] Minimal form for returning customers
     - [ ] Recurring subscriptions
     - [x] UX: Select either “one row” or “split fields” layout (merge StripeCardForm*)
     - [ ] [VAT numbers](https://stripe.com/docs/api/customer_tax_ids/create?lang=node)
-    - [ ] Minimal form for returning customers
   - [ ] Paddle
   - [ ] ChargeBee
 - [x] API mockup on http://localhost:6007/api/stripe (see [“Example server backend”](#example-server-backend) below)
