@@ -7,6 +7,7 @@ See also https://github.com/tomsoderlund/react-zeroconfig-components
 ## Design goals
 
 - “Plug and play” Stripe integration
+- Be VAT/tax compliant with European standards
 - Simple backend requirements – basically just mirror Stripe’s API
 
 
