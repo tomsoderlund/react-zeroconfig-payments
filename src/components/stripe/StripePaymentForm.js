@@ -10,7 +10,7 @@ import StripeCardFormSplit from './StripeCardFormSplit'
 const StripePaymentFormWithoutElements = ({
   stripeAppPublicKey,
   customerId,
-  companyRequired,
+  companyRequired = false,
   onResponse,
   amountDecimals,
   currency = 'usd',
