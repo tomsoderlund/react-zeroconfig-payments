@@ -7,7 +7,7 @@ import StripeCardFormSplit from './StripeCardFormSplit'
 
 const StripePaymentFormWithoutElements = ({ stripeAppPublicKey, stripePaymentIntent, companyRequired, onResponse }) => {
   const stripe = useStripe()
-  const [currentPaymentMethod, setCurrentPaymentMethod] = useState(stripePaymentIntent.payment_method)
+  const [currentPaymentMethod, setCurrentPaymentMethod] = useState(stripePaymentIntent?.payment_method)
   const [currentContactInfo, setCurrentContactInfo] = useState()
 
   const handleContactInfoChange = (contactInfo) => {
@@ -22,7 +22,7 @@ const StripePaymentFormWithoutElements = ({ stripeAppPublicKey, stripePaymentInt
     }
   }
 
-  const handleCompletePayment = () => {
+  const handleConfirmPayment = () => {
     stripe.confirmCardPayment(
       stripePaymentIntent.client_secret,
       {
@@ -47,7 +47,7 @@ const StripePaymentFormWithoutElements = ({ stripeAppPublicKey, stripePaymentInt
 
       <button
         type='button'
-        onClick={handleCompletePayment}
+        onClick={handleConfirmPayment}
       >
         Complete payment
       </button>

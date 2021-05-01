@@ -11,9 +11,9 @@ const stripe = require('stripe')(process.env.STRIPE_APP_SECRET_KEY)
 
 const handleCreatePaymentIntent = async (req, res) => {
   const { amount } = req.body
-  if (amount === undefined) throw new CustomError('No amount specified', 400)
+  if (amount === 0) throw new CustomError('Zero amount specified', 400)
   const paymentIntent = await stripe.paymentIntents.create({
-    amount,
+    // amount,
     currency: 'usd'
   })
   res.send(paymentIntent)

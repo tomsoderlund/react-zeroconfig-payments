@@ -17,12 +17,12 @@ export const StripeCardFormSplitWithoutElements = ({ stripeOptions, className, o
       return
     }
 
-    const payload = await stripe.createPaymentMethod({
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardNumberElement)
     })
 
-    onResponse(payload)
+    onResponse({ error, paymentMethod })
   }
 
   return (

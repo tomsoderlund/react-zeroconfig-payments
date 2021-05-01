@@ -1,19 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { action } from '@storybook/addon-actions'
 
 import '../styles.css'
 import StripePaymentForm from '../../src/components/stripe/StripePaymentForm'
 import ShowResponse from '../helpComponents/ShowResponse'
 import '../helpComponents/ShowResponse.css'
-
-const paymentIntent = {
-  id: 'pi_1GGmYnAdCgUa7NQtcSJOhtKb',
-  client_secret: 'pi_1GGmYnAdCgUa7NQtcSJOhtKb_secret_0VvmPm6vbhr3Je90i4F8oDy6Q',
-  amount: 1000,
-  currency: 'sek',
-  payment_method: null,
-  customer: 'cus_GoPLv5dzn5DazS'
-}
 
 // ----- Story -----
 
@@ -22,16 +13,31 @@ export default {
 }
 
 export const standard = () => {
+  const [paymentIntent, setPaymentIntent] = useState()
   const [response, setResponse] = useState()
+
+  useEffect(() => {
+    async function fetchPaymentIntent () {
+      const result = await window.fetch('/api/stripe/paymentIntents', {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' }
+      })
+        .then(res => res.json())
+      setPaymentIntent(result)
+    }
+    fetchPaymentIntent()
+  }, [])
 
   const handleResponse = (value) => {
     action('onResponse')(value)
     setResponse(value)
   }
 
+  console.log('paymentIntent:', paymentIntent)
+
   return (
     <div>
-      <p>Test card number: 4242424242424242</p>
+      <blockquote>Test card number: 4242424242424242</blockquote>
 
       <StripePaymentForm
         stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}

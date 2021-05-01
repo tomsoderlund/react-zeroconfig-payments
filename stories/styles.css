@@ -26,6 +26,12 @@ label:not(.menu-item) input {
   color: lightgray;
 }
 
+blockquote {
+  padding: 1em;
+  border-radius: 0.5em;
+  background-color: lightyellow;
+}
+
 /* #NiceAndSimple: Button - https://codepen.io/tomsoderlund/pen/qqyzqp */
 button,
 .button {
