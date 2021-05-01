@@ -60,7 +60,7 @@ See the Storybook stories in `/stories` to see how the components are used in co
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
       amountDecimals={9.90}
       currency='eur'
-      onResponse={handleResponse}
+      onResponse={({ paymentIntent, error }) => {...}}
     />
 
 ![StripePaymentForm](docs/StripePaymentForm.png)
@@ -71,7 +71,7 @@ This component is client-side only, does not require backend routes.
 
     <StripeCardForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
-      onResponse={handleResponse}
+      onResponse={({ paymentMethod, error }) => {...}}
     />
 
 ![StripeCardForm](docs/StripeCardForm.png)
@@ -81,7 +81,7 @@ This component is client-side only, does not require backend routes.
     <StripeCardForm
       oneRow={true}
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
-      onResponse={handleResponse}
+      onResponse={({ paymentMethod, error }) => {...}}
     />
 
 ![StripeCardForm: oneRow](docs/StripeCardFormOneRow.png)

@@ -2,7 +2,7 @@ import React from 'react'
 
 const ShowResponse = ({ response = {} }) => {
   if (!response || Object.keys(response).length === 0) return null
-  const { error, paymentMethod, paymentIntent } = response
+  const { paymentMethod, paymentIntent, error } = response
   return (
     <div
       className={'response' + (error ? ' error' : '')}
