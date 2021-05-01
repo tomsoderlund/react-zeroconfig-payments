@@ -60,7 +60,7 @@ See the Storybook stories in `/stories` to see how the components are used in co
 
 ### StripeCardForm
 
-This component is client-side only.
+This component is client-side only, does not require backend routes.
 
     <StripeCardForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}

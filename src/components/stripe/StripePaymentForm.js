@@ -1,3 +1,10 @@
+/**
+ * StripePaymentForm
+ * @description Note: this component uses Stripe server API, it requires backend routes.
+ * @module StripePaymentForm
+ * @author Tom Söderlund
+ */
+
 import React, { useState, useEffect } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
@@ -7,7 +14,7 @@ import makeRestRequest from '../../lib/makeRestRequest'
 import ContactInfoForm from '../common/ContactInfoForm'
 import StripeCardForm from './StripeCardForm'
 
-const StripePaymentFormWithoutElements = ({
+const StripePaymentForm = ({
   stripeAppPublicKey,
   customerId,
   companyRequired = false,
@@ -96,7 +103,7 @@ const StripePaymentFormWithElements = (props) => {
   const stripePromise = loadStripe(props.stripeAppPublicKey)
   return (
     <Elements stripe={stripePromise}>
-      <StripePaymentFormWithoutElements
+      <StripePaymentForm
         {...props}
       />
     </Elements>

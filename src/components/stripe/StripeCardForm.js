@@ -1,10 +1,17 @@
+/**
+ * StripeCardForm
+ * @description This component is client-side only, does not require backend routes.
+ * @module StripeCardForm
+ * @author Tom Söderlund
+ */
+
 import React, { useState } from 'react'
 
 import { loadStripe } from '@stripe/stripe-js'
 import { useStripe, useElements, CardElement, CardNumberElement, CardCvcElement, CardExpiryElement, Elements } from '@stripe/react-stripe-js'
 import DEFAULT_STRIPE_OPTIONS from '../../lib/stripeOptions'
 
-export const StripeCardFormWithoutElements = ({
+export const StripeCardForm = ({
   stripeOptions = DEFAULT_STRIPE_OPTIONS,
   className,
   onResponse,
@@ -92,7 +99,7 @@ const StripeCardFormWithElements = (props) => {
   const stripePromise = loadStripe(props.stripeAppPublicKey)
   return (
     <Elements stripe={stripePromise}>
-      <StripeCardFormWithoutElements
+      <StripeCardForm
         {...props}
       />
     </Elements>
