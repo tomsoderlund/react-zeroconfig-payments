@@ -59,20 +59,20 @@ const FieldsSeparated = ({ stripeOptions }) => {
   return (
     <>
       <label>
-        Card number
+        Card number:
         {/* Events: onReady, onChange, onBlur, onFocus */}
         <CardNumberElement
           options={stripeOptions}
         />
       </label>
       <label>
-        Expiration date
+        Expiration date:
         <CardExpiryElement
           options={stripeOptions}
         />
       </label>
       <label>
-        CVC
+        CVC:
         <CardCvcElement
           options={stripeOptions}
         />
@@ -85,7 +85,7 @@ const FieldsOneRow = ({ stripeOptions }) => {
   return (
     <>
       <label>
-      Card details
+      Card details:
         {/* Events: onReady, onChange, onBlur, onFocus */}
         <CardElement
           options={stripeOptions}
