@@ -22,7 +22,8 @@ const StripePaymentForm = ({
   amountDecimals,
   currency = 'usd',
   buttonLabel,
-  oneRow
+  oneRow,
+  showFields
 }) => {
   const [customer, setCustomer] = useState({ id: customerId })
   const [paymentIntent, setPaymentIntent] = useState()
@@ -89,6 +90,7 @@ const StripePaymentForm = ({
       <ContactInfoForm
         companyRequired={companyRequired}
         onChange={setContactInfo}
+        showFields={showFields}
       />
 
       <StripeCardForm
