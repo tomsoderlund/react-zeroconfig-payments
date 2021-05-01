@@ -13,7 +13,7 @@ export default {
   title: 'Stripe/StripeCardForm'
 }
 
-export const SplitForm = () => {
+const Template = ({ oneRow }) => {
   const [response, setResponse] = useState()
 
   const handleResponse = (value) => {
@@ -28,6 +28,7 @@ export const SplitForm = () => {
       <StripeCardForm
         stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
         onResponse={handleResponse}
+        oneRow={oneRow}
       />
 
       <ShowResponse
@@ -36,3 +37,13 @@ export const SplitForm = () => {
     </>
   )
 }
+
+export const Default = () => (
+  <Template />
+)
+
+export const OneRow = () => (
+  <Template
+    oneRow
+  />
+)
