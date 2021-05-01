@@ -26,11 +26,12 @@ Create an `.env` file for testing (see `.env.example`).
   - [x] Stripe
     - [x] One-time payments
     - [ ] Recurring subscriptions
-    - [ ] UX: Select either “one row” or “split fields” layout
+    - [ ] UX: Select either “one row” or “split fields” layout (merge StripeCardForm*)
     - [ ] VAT number
+    - [ ] Be able to use StripeCardForm* stand-alone without StripePaymentForm
   - [ ] Paddle
   - [ ] ChargeBee
-- [x] API mockup on http://localhost:6007/api (see “Example server backend” below)
+- [x] API mockup on http://localhost:6007/api/stripe (see “Example server backend” below)
 - Accessibility:
   - [x] All components use `button` where applicable
   - [x] Keyboard/tab support
