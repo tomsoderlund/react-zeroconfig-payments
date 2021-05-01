@@ -4,7 +4,7 @@ import { loadStripe } from '@stripe/stripe-js'
 import { useStripe, useElements, CardElement, Elements } from '@stripe/react-stripe-js'
 import stripeOptions from '../../lib/stripeOptions'
 
-const CardFormOneRowWithoutElements = () => {
+const StripeCardFormOneRowWithoutElements = () => {
   const stripe = useStripe()
   const elements = useElements()
 
@@ -41,13 +41,13 @@ const CardFormOneRowWithoutElements = () => {
   )
 }
 
-const CardFormOneRowWithElements = ({ stripeAppPublicKey }) => {
+const StripeCardFormOneRowWithElements = ({ stripeAppPublicKey }) => {
   const stripePromise = loadStripe(stripeAppPublicKey)
   return (
     <Elements stripe={stripePromise}>
-      <CardFormOneRowWithoutElements />
+      <StripeCardFormOneRowWithoutElements />
     </Elements>
   )
 }
 
-export default CardFormOneRowWithElements
+export default StripeCardFormOneRowWithElements

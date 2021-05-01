@@ -32,29 +32,29 @@ Create an `.env` file for testing (see `.env.example`).
 
 See the Storybook stories in `/stories` to see how the components are used in code, including more advanced use cases.
 
-### CardFormOneRow
+### StripeCardFormOneRow
 
-    <CardFormOneRow
+    <StripeCardFormOneRow
       {...props docs coming soon}
     />
 
-![CardFormOneRow](docs/CardFormOneRow.png)
+![StripeCardFormOneRow](docs/StripeCardFormOneRow.png)
 
-### CardFormSplit
+### StripeCardFormSplit
 
-    <CardFormSplit
+    <StripeCardFormSplit
       {...props docs coming soon}
     />
 
-![CardFormSplit](docs/CardFormSplit.png)
+![StripeCardFormSplit](docs/StripeCardFormSplit.png)
 
-### PaymentForm
+### StripePaymentForm
 
-    <PaymentForm
+    <StripePaymentForm
       {...props docs coming soon}
     />
 
-![PaymentForm](docs/PaymentForm.png)
+![StripePaymentForm](docs/StripePaymentForm.png)
 
 
 ## Styling
@@ -63,7 +63,7 @@ Styling is optional, CSS files are included but you can also use `styled-compone
 
 How to import CSS file, example:
 
-    import '../node_modules/react-zeroconfig-payments/dist/CardFormOneRow.css'
+    import '../node_modules/react-zeroconfig-payments/dist/StripeCardFormOneRow.css'
 
 
 ## Stripe

@@ -2,17 +2,26 @@ import React, { useState } from 'react'
 import { action } from '@storybook/addon-actions'
 
 import '../styles.css'
-import CardFormSplit from '../../src/components/stripe/CardFormSplit'
+import StripePaymentForm from '../../src/components/stripe/StripePaymentForm'
 import ShowResponse from '../helpComponents/ShowResponse'
 import '../helpComponents/ShowResponse.css'
+
+const paymentIntent = {
+  id: 'pi_1GGmYnAdCgUa7NQtcSJOhtKb',
+  client_secret: 'pi_1GGmYnAdCgUa7NQtcSJOhtKb_secret_0VvmPm6vbhr3Je90i4F8oDy6Q',
+  amount: 1000,
+  currency: 'sek',
+  payment_method: null,
+  customer: 'cus_GoPLv5dzn5DazS'
+}
 
 // ----- Story -----
 
 export default {
-  title: 'Stripe/CardFormSplit'
+  title: 'Stripe/StripePaymentForm'
 }
 
-export const SplitForm = () => {
+export const standard = () => {
   const [response, setResponse] = useState()
 
   const handleResponse = (value) => {
@@ -24,9 +33,11 @@ export const SplitForm = () => {
     <div>
       <p>Test card number: 4242424242424242</p>
 
-      <CardFormSplit
+      <StripePaymentForm
         stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
+        stripePaymentIntent={paymentIntent}
         onResponse={handleResponse}
+        companyRequired={false}
       />
 
       <ShowResponse

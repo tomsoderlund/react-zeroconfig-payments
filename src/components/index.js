@@ -1,5 +1,5 @@
 export { default as ContactInfoForm } from './common/ContactInfoForm'
 
-export { default as CardFormOneRow } from './stripe/CardFormOneRow'
-export { default as CardFormSplit } from './stripe/CardFormSplit'
-export { default as PaymentForm } from './stripe/PaymentForm'
+export { default as StripeCardFormOneRow } from './stripe/StripeCardFormOneRow'
+export { default as StripeCardFormSplit } from './stripe/StripeCardFormSplit'
+export { default as StripePaymentForm } from './stripe/StripePaymentForm'

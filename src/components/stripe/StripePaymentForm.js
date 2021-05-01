@@ -3,9 +3,9 @@ import { loadStripe } from '@stripe/stripe-js'
 import { useStripe, Elements } from '@stripe/react-stripe-js'
 
 import ContactInfoForm from '../common/ContactInfoForm'
-import CardFormSplit from './CardFormSplit'
+import StripeCardFormSplit from './StripeCardFormSplit'
 
-const PaymentFormWithoutElements = ({ stripeAppPublicKey, stripePaymentIntent, companyRequired, onResponse }) => {
+const StripePaymentFormWithoutElements = ({ stripeAppPublicKey, stripePaymentIntent, companyRequired, onResponse }) => {
   const stripe = useStripe()
   const [currentPaymentMethod, setCurrentPaymentMethod] = useState(stripePaymentIntent.payment_method)
   const [currentBillingDetails, setCurrentBillingDetails] = useState()
@@ -31,7 +31,7 @@ const PaymentFormWithoutElements = ({ stripeAppPublicKey, stripePaymentIntent, c
     )
   }
 
-  console.log('PaymentForm:', { stripePaymentIntent, currentPaymentMethod, currentBillingDetails })
+  console.log('StripePaymentForm:', { stripePaymentIntent, currentPaymentMethod, currentBillingDetails })
 
   return (
     <div>
@@ -40,7 +40,7 @@ const PaymentFormWithoutElements = ({ stripeAppPublicKey, stripePaymentIntent, c
         onChange={handleContactInfoChange}
       />
 
-      <CardFormSplit
+      <StripeCardFormSplit
         stripeAppPublicKey={stripeAppPublicKey}
         onResponse={handleCardUpdated}
       />
@@ -55,15 +55,15 @@ const PaymentFormWithoutElements = ({ stripeAppPublicKey, stripePaymentIntent, c
   )
 }
 
-const PaymentFormWithElements = (props) => {
+const StripePaymentFormWithElements = (props) => {
   const stripePromise = loadStripe(props.stripeAppPublicKey)
   return (
     <Elements stripe={stripePromise}>
-      <PaymentFormWithoutElements
+      <StripePaymentFormWithoutElements
         {...props}
       />
     </Elements>
   )
 }
 
-export default PaymentFormWithElements
+export default StripePaymentFormWithElements

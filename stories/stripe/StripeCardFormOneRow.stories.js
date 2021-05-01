@@ -2,12 +2,12 @@ import React from 'react'
 // import { action } from '@storybook/addon-actions'
 
 import '../styles.css'
-import CardFormOneRow from '../../src/components/stripe/CardFormOneRow'
+import StripeCardFormOneRow from '../../src/components/stripe/StripeCardFormOneRow'
 
 // ----- Story -----
 
 export default {
-  title: 'Stripe/CardFormOneRow'
+  title: 'Stripe/StripeCardFormOneRow'
 }
 
 export const OneRowForm = () => {
@@ -19,7 +19,7 @@ export const OneRowForm = () => {
   // }
 
   return (
-    <CardFormOneRow
+    <StripeCardFormOneRow
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
     />)
 }
