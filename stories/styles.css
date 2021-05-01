@@ -45,7 +45,6 @@ button,
   color: white;
   border-radius: 0.2em;
   border: none;
-  box-shadow: 0 0.125em 0.125em rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
   display: inline-block;
   cursor: pointer;
@@ -70,12 +69,10 @@ button:hover:not(:disabled),
 .button:hover:not(:disabled) {
   opacity: 0.8;
   top: -0.1em;
-  box-shadow: 0 0.2em 0.1em rgba(0, 0, 0, 0.2);
 }
 button:hover:active,
 .button:hover:active {
   top: 0.1em;
-  box-shadow: 0 0.02em 0.125em rgba(0, 0, 0, 0.4);
   transition: all 0.05s;
 }
 button:disabled,
@@ -105,7 +102,6 @@ select {
   box-sizing: border-box;
   border-radius: 0.2em;
   border: 1px solid lightgray;
-  box-shadow: none;
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
