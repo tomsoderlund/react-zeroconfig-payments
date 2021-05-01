@@ -35,9 +35,9 @@ const stripeMockupServerHandler = (router) => {
   router.post('/api/stripe/payment_intents/:id', (req, res) => handleRestRequest(
     async (req, res) => res.send(await stripe.paymentIntents.update(req.params.id, req.body)), { req, res }
   ))
-  router.post('/api/stripe/payment_intents/:id/:action', (req, res) => handleRestRequest(
-    async (req, res) => res.send(await stripe.paymentIntents[req.params.action](req.body)), { req, res }
-  ))
+  // router.post('/api/stripe/payment_intents/:id/:action', (req, res) => handleRestRequest(
+  //   async (req, res) => res.send(await stripe.paymentIntents[req.params.action](req.body)), { req, res }
+  // ))
 
   // customers – https://stripe.com/docs/api/customers
   router.post('/api/stripe/customers', (req, res) => handleRestRequest(
@@ -46,9 +46,9 @@ const stripeMockupServerHandler = (router) => {
   router.post('/api/stripe/customers/:id', (req, res) => handleRestRequest(
     async (req, res) => res.send(await stripe.customers.update(req.params.id, req.body)), { req, res }
   ))
-  router.delete('/api/stripe/customers/:id', (req, res) => handleRestRequest(
-    async (req, res) => res.send(await stripe.customers.delete(req.params.id)), { req, res }
-  ))
+  // router.delete('/api/stripe/customers/:id', (req, res) => handleRestRequest(
+  //   async (req, res) => res.send(await stripe.customers.delete(req.params.id)), { req, res }
+  // ))
 }
 
 module.exports = stripeMockupServerHandler
