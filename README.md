@@ -23,10 +23,10 @@ Create an `.env` file for testing (see `.env.example`).
 
 Required routes for `StripePaymentForm`:
 
-- `post('/api/stripe/payment_intents')`
-- `post('/api/stripe/payment_intents/:id')`
-- `post('/api/stripe/customers')`
-- `post('/api/stripe/customers/:id')`
+- POST `/api/stripe/payment_intents`
+- POST `/api/stripe/payment_intents/:id`
+- POST `/api/stripe/customers`
+- POST `/api/stripe/customers/:id`
 
 See [“Example server backend”](#example-server-backend) below.
 
