@@ -16,9 +16,9 @@ export default {
 export const standard = () => {
   const [response, setResponse] = useState()
 
-  const handleResponse = (value) => {
-    action('onResponse')(value)
-    setResponse(value)
+  const handleResponse = (response) => {
+    action('onResponse')(response)
+    setResponse(response)
   }
 
   return (
@@ -27,10 +27,11 @@ export const standard = () => {
 
       <StripePaymentForm
         stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
-        onResponse={handleResponse}
-        companyRequired={false}
-        amount={200}
+        amountDecimals={2.00}
+        currency='eur'
         customerId='cus_JP7lD57IzN7RGC'
+        companyRequired={false}
+        onResponse={handleResponse}
       />
 
       <ShowResponse

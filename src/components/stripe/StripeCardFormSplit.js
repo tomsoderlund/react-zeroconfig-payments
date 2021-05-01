@@ -5,7 +5,7 @@ import { useStripe, useElements, CardNumberElement, CardCvcElement, CardExpiryEl
 import DEFAULT_STRIPE_OPTIONS from '../../lib/stripeOptions'
 
 export const StripeCardFormSplitWithoutElements = ({
-  stripeOptions,
+  stripeOptions = DEFAULT_STRIPE_OPTIONS,
   className,
   onResponse,
   buttonLabel = 'Pay now'
@@ -19,7 +19,7 @@ export const StripeCardFormSplitWithoutElements = ({
     // Stripe.js has not loaded yet. Make sure to disable form submission until Stripe.js has loaded.
     if (!stripe || !elements) return
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { paymentMethod, error } = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardNumberElement)
     })
@@ -58,14 +58,12 @@ export const StripeCardFormSplitWithoutElements = ({
   )
 }
 
-const StripeCardFormSplitWithElements = ({ stripeAppPublicKey, stripeOptions = DEFAULT_STRIPE_OPTIONS, className, onResponse }) => {
-  const stripePromise = loadStripe(stripeAppPublicKey)
+const StripeCardFormSplitWithElements = (props) => {
+  const stripePromise = loadStripe(props.stripeAppPublicKey)
   return (
     <Elements stripe={stripePromise}>
       <StripeCardFormSplitWithoutElements
-        stripeOptions={stripeOptions}
-        className={className}
-        onResponse={onResponse}
+        {...props}
       />
     </Elements>
   )

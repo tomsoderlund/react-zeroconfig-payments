@@ -32,6 +32,11 @@ blockquote {
   background-color: lightyellow;
 }
 
+blockquote strong {
+  user-select: all;
+  cursor: pointer;
+}
+
 /* #NiceAndSimple: Button - https://codepen.io/tomsoderlund/pen/qqyzqp */
 button,
 .button {

@@ -12,13 +12,12 @@ const StripePaymentFormWithoutElements = ({
   customerId,
   companyRequired,
   onResponse,
-  amount,
+  amountDecimals,
   currency = 'usd',
   buttonLabel
 }) => {
   const [customer, setCustomer] = useState({ id: customerId })
   const [paymentIntent, setPaymentIntent] = useState()
-  const [currentPaymentMethod, setCurrentPaymentMethod] = useState()
   const [contactInfo, setContactInfo] = useState()
 
   // TODO: move to CardForm?
@@ -47,24 +46,14 @@ const StripePaymentFormWithoutElements = ({
 
   useEffect(() => {
     createOrUpdatePaymentIntent({
-      amount,
+      amount: Math.round(amountDecimals * 100),
       currency
     })
-  }, [customer?.id])
-
-  useEffect(() => {
-    setCurrentPaymentMethod(paymentIntent?.payment_method)
-  }, [paymentIntent])
-
-  const handleContactInfoChange = (newContactInfo) => {
-    setContactInfo(newContactInfo)
-  }
+  }, [customer?.id, amountDecimals, currency])
 
   const handleStartPayment = async ({ stripe, paymentMethod: newPaymentMethod, card, error }) => {
     if (error) {
-      onResponse && onResponse({ error })
-    } else {
-      setCurrentPaymentMethod(newPaymentMethod)
+      return onResponse && onResponse({ error })
     }
 
     // Update customer
@@ -74,12 +63,13 @@ const StripePaymentFormWithoutElements = ({
 
     // Confirm payment
     const { billing_details } = newPaymentMethod // eslint-disable-line camelcase
-    stripe.confirmCardPayment(
+    const results = await stripe.confirmCardPayment(
       paymentIntent.client_secret,
       {
         payment_method: { card, billing_details }
       }
     )
+    onResponse(results)
   }
 
   // console.log('StripePaymentForm:', { paymentIntent, customer, currentPaymentMethod, contactInfo })
@@ -88,7 +78,7 @@ const StripePaymentFormWithoutElements = ({
     <>
       <ContactInfoForm
         companyRequired={companyRequired}
-        onChange={handleContactInfoChange}
+        onChange={setContactInfo}
       />
 
       <StripeCardFormSplit

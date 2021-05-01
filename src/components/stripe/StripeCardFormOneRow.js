@@ -2,9 +2,14 @@ import React from 'react'
 
 import { loadStripe } from '@stripe/stripe-js'
 import { useStripe, useElements, CardElement, Elements } from '@stripe/react-stripe-js'
-import stripeOptions from '../../lib/stripeOptions'
+import DEFAULT_STRIPE_OPTIONS from '../../lib/stripeOptions'
 
-const StripeCardFormOneRowWithoutElements = () => {
+const StripeCardFormOneRowWithoutElements = ({
+  stripeOptions = DEFAULT_STRIPE_OPTIONS,
+  className,
+  onResponse,
+  buttonLabel = 'Pay now'
+}) => {
   const stripe = useStripe()
   const elements = useElements()
 
@@ -17,16 +22,19 @@ const StripeCardFormOneRowWithoutElements = () => {
       return
     }
 
-    const payload = await stripe.createPaymentMethod({
+    const { paymentMethod, error } = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardElement)
     })
 
-    console.log('[PaymentMethod]', payload)
+    onResponse({ stripe, paymentMethod, card: elements.getElement(CardElement), error })
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className={className}
+    >
       <label>
       Card details
         {/* Events: onReady, onChange, onBlur, onFocus */}
@@ -35,17 +43,19 @@ const StripeCardFormOneRowWithoutElements = () => {
         />
       </label>
       <button type='submit' disabled={!stripe}>
-      Pay
+        {buttonLabel}
       </button>
     </form>
   )
 }
 
-const StripeCardFormOneRowWithElements = ({ stripeAppPublicKey }) => {
-  const stripePromise = loadStripe(stripeAppPublicKey)
+const StripeCardFormOneRowWithElements = (props) => {
+  const stripePromise = loadStripe(props.stripeAppPublicKey)
   return (
     <Elements stripe={stripePromise}>
-      <StripeCardFormOneRowWithoutElements />
+      <StripeCardFormOneRowWithoutElements
+        {...props}
+      />
     </Elements>
   )
 }
