@@ -47,6 +47,8 @@ See the Storybook stories in `/stories` to see how the components are used in co
 
 ### StripePaymentForm
 
+*Note:* this component uses Stripe server API, it requires backend routes.
+
     <StripePaymentForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
       amountDecimals={9.90}
@@ -57,6 +59,8 @@ See the Storybook stories in `/stories` to see how the components are used in co
 ![StripePaymentForm](docs/StripePaymentForm.png)
 
 ### StripeCardForm
+
+This component is client-side only.
 
     <StripeCardForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
