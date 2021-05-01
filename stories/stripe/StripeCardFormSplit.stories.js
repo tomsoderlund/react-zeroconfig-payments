@@ -5,6 +5,7 @@ import '../styles.css'
 import StripeCardFormSplit from '../../src/components/stripe/StripeCardFormSplit'
 import ShowResponse from '../helpComponents/ShowResponse'
 import '../helpComponents/ShowResponse.css'
+import HelpInstructions from '../helpComponents/HelpInstructions'
 
 // ----- Story -----
 
@@ -21,8 +22,8 @@ export const SplitForm = () => {
   }
 
   return (
-    <div>
-      <p>Test card number: 4242424242424242</p>
+    <>
+      <HelpInstructions />
 
       <StripeCardFormSplit
         stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
@@ -32,6 +33,6 @@ export const SplitForm = () => {
       <ShowResponse
         response={response}
       />
-    </div>
+    </>
   )
 }

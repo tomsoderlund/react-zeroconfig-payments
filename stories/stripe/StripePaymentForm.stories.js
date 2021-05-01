@@ -5,6 +5,7 @@ import '../styles.css'
 import StripePaymentForm from '../../src/components/stripe/StripePaymentForm'
 import ShowResponse from '../helpComponents/ShowResponse'
 import '../helpComponents/ShowResponse.css'
+import HelpInstructions from '../helpComponents/HelpInstructions'
 
 // ----- Story -----
 
@@ -37,7 +38,7 @@ export const standard = () => {
 
   return (
     <div>
-      <blockquote>Test card number: 4242424242424242</blockquote>
+      <HelpInstructions />
 
       <StripePaymentForm
         stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}

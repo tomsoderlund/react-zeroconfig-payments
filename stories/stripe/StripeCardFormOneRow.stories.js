@@ -3,6 +3,7 @@ import React from 'react'
 
 import '../styles.css'
 import StripeCardFormOneRow from '../../src/components/stripe/StripeCardFormOneRow'
+import HelpInstructions from '../helpComponents/HelpInstructions'
 
 // ----- Story -----
 
@@ -19,7 +20,12 @@ export const OneRowForm = () => {
   // }
 
   return (
-    <StripeCardFormOneRow
-      stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
-    />)
+    <>
+      <HelpInstructions />
+
+      <StripeCardFormOneRow
+        stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
+      />
+    </>
+  )
 }
