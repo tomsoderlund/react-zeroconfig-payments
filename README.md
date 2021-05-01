@@ -27,6 +27,7 @@ Create an `.env` file for testing (see `.env.example`).
     - [ ] One-time payments
     - [ ] Recurring subscriptions
     - [ ] UX: Select either “one row” or “split fields” layout
+    - [ ] VAT number
   - [ ] Paddle
   - [ ] ChargeBee
 - [ ] API mockup on http://localhost:6007/api (see “Example server backend” below)
