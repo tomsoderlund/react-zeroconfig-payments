@@ -43,7 +43,10 @@ See the Storybook stories in `/stories` to see how the components are used in co
 ### StripePaymentForm
 
     <StripePaymentForm
-      {...props docs coming soon}
+      stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
+      amountDecimals={9.90}
+      currency='eur'
+      onResponse={handleResponse}
     />
 
 ![StripePaymentForm](docs/StripePaymentForm.png)
@@ -51,7 +54,8 @@ See the Storybook stories in `/stories` to see how the components are used in co
 ### StripeCardFormOneRow
 
     <StripeCardFormOneRow
-      {...props docs coming soon}
+      stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
+      onResponse={handleResponse}
     />
 
 ![StripeCardFormOneRow](docs/StripeCardFormOneRow.png)
@@ -59,7 +63,8 @@ See the Storybook stories in `/stories` to see how the components are used in co
 ### StripeCardFormSplit
 
     <StripeCardFormSplit
-      {...props docs coming soon}
+      stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
+      onResponse={handleResponse}
     />
 
 ![StripeCardFormSplit](docs/StripeCardFormSplit.png)
