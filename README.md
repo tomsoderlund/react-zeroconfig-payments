@@ -22,7 +22,7 @@ Create an `.env` file for testing (see `.env.example`).
     - [ ] Recurring subscriptions
   - [ ] Paddle
   - [ ] ChargeBee
-- [ ] API mockup on http://localhost:6007/api/payments/123 (see `.storybook/middleware.js`)
+- [ ] API mockup on http://localhost:6007/api (see “Example server backend” below)
 - Accessibility:
   - [x] All components use `button` where applicable
   - [x] Keyboard/tab support
@@ -57,13 +57,14 @@ See the Storybook stories in `/stories` to see how the components are used in co
 ![StripePaymentForm](docs/StripePaymentForm.png)
 
 
+## Example server backend
+
+    curl -X POST -H 'Content-type: application/json' --data '{ "amount": 100 }' http://localhost:6007/api/stripe/paymentIntents
+
+
 ## Styling
 
-Styling is optional, CSS files are included but you can also use `styled-components` or similar.
-
-How to import CSS file, example:
-
-    import '../node_modules/react-zeroconfig-payments/dist/StripeCardFormOneRow.css'
+Styling is optional, you can use `styled-components` or similar.
 
 
 ## Stripe
