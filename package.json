@@ -1,6 +1,6 @@
 {
   "name": "react-zeroconfig-payments",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "React payment components that require zero configuration.",
   "author": "Tom Söderlund <tom@tomsoderlund.com>",
   "license": "ISC",
@@ -13,7 +13,9 @@
     "unit": "yarn prepare && node test/index.js ",
     "prepare": "rm -rf dist && mkdir dist && babel ./src/components -d dist --copy-files",
     "storybook": "start-storybook -p 6007",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "v+": "yarn version --patch",
+    "v++": "yarn version --minor"
   },
   "main": "dist/index.js",
   "files": [
