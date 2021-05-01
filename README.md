@@ -11,6 +11,23 @@ See also https://github.com/tomsoderlund/react-zeroconfig-components
 - Simple backend requirements – basically just mirror Stripe’s API
 
 
+## Features
+
+- Payment systems:
+  - [x] Stripe
+    - [x] One-time payments
+      - [ ] Minimal form for returning customers
+    - [ ] Recurring subscriptions
+    - [x] UX: Select either “one row” or “split fields” layout (merge StripeCardForm*)
+    - [ ] [VAT numbers](https://stripe.com/docs/api/customer_tax_ids/create?lang=node)
+  - [ ] Paddle
+  - [ ] ChargeBee
+- [x] API mockup on http://localhost:6007/api/stripe (see [“Example server backend”](#example-server-backend) below)
+- Accessibility:
+  - [x] All components use `button` where applicable
+  - [x] Keyboard/tab support
+
+
 ## Installation
 
     yarn add react-zeroconfig-payments  # or: npm install react-zeroconfig-payments
@@ -29,23 +46,6 @@ Required routes for `StripePaymentForm`:
 - POST `/api/stripe/customers/:id`
 
 See [“Example server backend”](#example-server-backend) below.
-
-
-## Features
-
-- Payment systems:
-  - [x] Stripe
-    - [x] One-time payments
-      - [ ] Minimal form for returning customers
-    - [ ] Recurring subscriptions
-    - [x] UX: Select either “one row” or “split fields” layout (merge StripeCardForm*)
-    - [ ] [VAT numbers](https://stripe.com/docs/api/customer_tax_ids/create?lang=node)
-  - [ ] Paddle
-  - [ ] ChargeBee
-- [x] API mockup on http://localhost:6007/api/stripe (see [“Example server backend”](#example-server-backend) below)
-- Accessibility:
-  - [x] All components use `button` where applicable
-  - [x] Keyboard/tab support
 
 
 ## Components
