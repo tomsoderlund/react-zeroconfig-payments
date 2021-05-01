@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 
 import { loadStripe } from '@stripe/stripe-js'
-import { useStripe, useElements, CardNumberElement, CardCvcElement, CardExpiryElement, Elements } from '@stripe/react-stripe-js'
+import { useStripe, useElements, CardElement, CardNumberElement, CardCvcElement, CardExpiryElement, Elements } from '@stripe/react-stripe-js'
 import DEFAULT_STRIPE_OPTIONS from '../../lib/stripeOptions'
 
-export const StripeCardFormSplitWithoutElements = ({
+export const StripeCardFormWithoutElements = ({
   stripeOptions = DEFAULT_STRIPE_OPTIONS,
   className,
   onResponse,
-  buttonLabel = 'Pay now'
+  buttonLabel = 'Pay now',
+  oneRow = false
 }) => {
   const stripe = useStripe()
   const elements = useElements()
@@ -23,10 +24,10 @@ export const StripeCardFormSplitWithoutElements = ({
 
     const { paymentMethod, error } = await stripe.createPaymentMethod({
       type: 'card',
-      card: elements.getElement(CardNumberElement)
+      card: elements.getElement(oneRow ? CardElement : CardNumberElement)
     })
 
-    onResponse({ stripe, paymentMethod, card: elements.getElement(CardNumberElement), error })
+    onResponse({ stripe, paymentMethod, card: elements.getElement(oneRow ? CardElement : CardNumberElement), error })
     setInProgress(false)
   }
 
@@ -35,6 +36,21 @@ export const StripeCardFormSplitWithoutElements = ({
       onSubmit={handleSubmit}
       className={className}
     >
+      {oneRow ? (
+        <FieldsOneRow stripeOptions={stripeOptions} />
+      ) : (
+        <FieldsSeparated stripeOptions={stripeOptions} />
+      )}
+      <button type='submit' disabled={!stripe || inProgress}>
+        {buttonLabel}
+      </button>
+    </form>
+  )
+}
+
+const FieldsSeparated = ({ stripeOptions }) => {
+  return (
+    <>
       <label>
         Card number
         {/* Events: onReady, onChange, onBlur, onFocus */}
@@ -54,22 +70,33 @@ export const StripeCardFormSplitWithoutElements = ({
           options={stripeOptions}
         />
       </label>
-      <button type='submit' disabled={!stripe || inProgress}>
-        {buttonLabel}
-      </button>
-    </form>
+    </>
   )
 }
 
-const StripeCardFormSplitWithElements = (props) => {
+const FieldsOneRow = ({ stripeOptions }) => {
+  return (
+    <>
+      <label>
+      Card details
+        {/* Events: onReady, onChange, onBlur, onFocus */}
+        <CardElement
+          options={stripeOptions}
+        />
+      </label>
+    </>
+  )
+}
+
+const StripeCardFormWithElements = (props) => {
   const stripePromise = loadStripe(props.stripeAppPublicKey)
   return (
     <Elements stripe={stripePromise}>
-      <StripeCardFormSplitWithoutElements
+      <StripeCardFormWithoutElements
         {...props}
       />
     </Elements>
   )
 }
 
-export default StripeCardFormSplitWithElements
+export default StripeCardFormWithElements

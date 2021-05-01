@@ -59,7 +59,7 @@ button,
   padding: 0.6em;
   margin: 0.2em;
   transition: all 0.1s;
-  min-width: 15em;
+  min-width: 20em;
 }
 button:focus:not(:disabled),
 .button:focus:not(:disabled) {
@@ -107,7 +107,7 @@ select {
   font-weight: inherit;
   padding: 0.6em;
   margin-right: 0.6em;
-  width: 15em;
+  width: 20em;
 }
 input::placeholder,
 textarea::placeholder {

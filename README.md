@@ -30,7 +30,7 @@ See “Example server backend” below.
   - [x] Stripe
     - [x] One-time payments
     - [ ] Recurring subscriptions
-    - [ ] UX: Select either “one row” or “split fields” layout (merge StripeCardForm*)
+    - [x] UX: Select either “one row” or “split fields” layout (merge StripeCardForm*)
     - [ ] VAT number
     - [ ] Be able to use StripeCardForm* stand-alone without StripePaymentForm
   - [ ] Paddle
@@ -56,23 +56,24 @@ See the Storybook stories in `/stories` to see how the components are used in co
 
 ![StripePaymentForm](docs/StripePaymentForm.png)
 
-### StripeCardFormOneRow
+### StripeCardForm
 
-    <StripeCardFormOneRow
+    <StripeCardForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
       onResponse={handleResponse}
     />
 
-![StripeCardFormOneRow](docs/StripeCardFormOneRow.png)
+![StripeCardForm](docs/StripeCardForm.png)
 
-### StripeCardFormSplit
+### StripeCardForm: oneRow
 
-    <StripeCardFormSplit
+    <StripeCardForm
+      oneRow={true}
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
       onResponse={handleResponse}
     />
 
-![StripeCardFormSplit](docs/StripeCardFormSplit.png)
+![StripeCardForm: oneRow](docs/StripeCardFormOneRow.png)
 
 
 ## Example server backend

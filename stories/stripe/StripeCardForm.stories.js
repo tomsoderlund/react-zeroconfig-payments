@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { action } from '@storybook/addon-actions'
 
 import '../styles.css'
-import StripeCardFormSplit from '../../src/components/stripe/StripeCardFormSplit'
+import StripeCardForm from '../../src/components/stripe/StripeCardForm'
 import ShowResponse from '../helpComponents/ShowResponse'
 import '../helpComponents/ShowResponse.css'
 import HelpInstructions from '../helpComponents/HelpInstructions'
@@ -10,7 +10,7 @@ import HelpInstructions from '../helpComponents/HelpInstructions'
 // ----- Story -----
 
 export default {
-  title: 'Stripe/StripeCardFormSplit'
+  title: 'Stripe/StripeCardForm'
 }
 
 export const SplitForm = () => {
@@ -25,7 +25,7 @@ export const SplitForm = () => {
     <>
       <HelpInstructions />
 
-      <StripeCardFormSplit
+      <StripeCardForm
         stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
         onResponse={handleResponse}
       />

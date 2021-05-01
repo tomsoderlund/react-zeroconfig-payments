@@ -5,7 +5,7 @@ import { Elements } from '@stripe/react-stripe-js'
 import makeRestRequest from '../../lib/makeRestRequest'
 
 import ContactInfoForm from '../common/ContactInfoForm'
-import StripeCardFormSplit from './StripeCardFormSplit'
+import StripeCardForm from './StripeCardForm'
 
 const StripePaymentFormWithoutElements = ({
   stripeAppPublicKey,
@@ -14,7 +14,8 @@ const StripePaymentFormWithoutElements = ({
   onResponse,
   amountDecimals,
   currency = 'usd',
-  buttonLabel
+  buttonLabel,
+  oneRow
 }) => {
   const [customer, setCustomer] = useState({ id: customerId })
   const [paymentIntent, setPaymentIntent] = useState()
@@ -81,10 +82,11 @@ const StripePaymentFormWithoutElements = ({
         onChange={setContactInfo}
       />
 
-      <StripeCardFormSplit
+      <StripeCardForm
         stripeAppPublicKey={stripeAppPublicKey}
         onResponse={handleStartPayment}
         buttonLabel={buttonLabel}
+        oneRow={oneRow}
       />
     </>
   )
