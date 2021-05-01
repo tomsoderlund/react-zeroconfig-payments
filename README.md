@@ -30,7 +30,7 @@ Create an `.env` file for testing (see `.env.example`).
     - [ ] VAT number
   - [ ] Paddle
   - [ ] ChargeBee
-- [ ] API mockup on http://localhost:6007/api (see “Example server backend” below)
+- [x] API mockup on http://localhost:6007/api (see “Example server backend” below)
 - Accessibility:
   - [x] All components use `button` where applicable
   - [x] Keyboard/tab support
