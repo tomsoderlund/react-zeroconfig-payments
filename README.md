@@ -21,7 +21,14 @@ Create an `.env` file for testing (see `.env.example`).
 
 ### Set up server routes
 
-See “Example server backend” below.
+Required routes for `StripePaymentForm`:
+
+- `post('/api/stripe/payment_intents')`
+- `post('/api/stripe/payment_intents/:id')`
+- `post('/api/stripe/customers')`
+- `post('/api/stripe/customers/:id')`
+
+See [“Example server backend”](#example-server-backend) below.
 
 
 ## Features
@@ -35,7 +42,7 @@ See “Example server backend” below.
     - [ ] Be able to use StripeCardForm* stand-alone without StripePaymentForm
   - [ ] Paddle
   - [ ] ChargeBee
-- [x] API mockup on http://localhost:6007/api/stripe (see “Example server backend” below)
+- [x] API mockup on http://localhost:6007/api/stripe (see [“Example server backend”](#example-server-backend) below)
 - Accessibility:
   - [x] All components use `button` where applicable
   - [x] Keyboard/tab support
