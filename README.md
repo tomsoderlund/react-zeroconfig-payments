@@ -24,7 +24,7 @@ Create an `.env` file for testing (see `.env.example`).
 
 - Payment systems:
   - [x] Stripe
-    - [ ] One-time payments
+    - [x] One-time payments
     - [ ] Recurring subscriptions
     - [ ] UX: Select either “one row” or “split fields” layout
     - [ ] VAT number
