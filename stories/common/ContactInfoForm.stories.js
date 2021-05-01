@@ -10,13 +10,31 @@ export default {
   title: 'Common/ContactInfoForm'
 }
 
-export const Default = () => {
+const Template = ({ showFields, companyRequired }) => {
   const handleChange = (value, index) => {
-    action('onChange')(value, index)
+    action('onChange')(JSON.stringify(value, null, 2))
   }
 
   return (
     <ContactInfoForm
       onChange={handleChange}
+      showFields={showFields}
+      companyRequired={companyRequired}
     />)
 }
+
+export const Default = () => (
+  <Template />
+)
+
+export const CompanyRequired = () => (
+  <Template
+    companyRequired
+  />
+)
+
+export const JustEmail = () => (
+  <Template
+    showFields={['email']}
+  />
+)

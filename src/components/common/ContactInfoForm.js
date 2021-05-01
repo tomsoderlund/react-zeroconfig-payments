@@ -8,14 +8,20 @@ import RadioButtons from './RadioButtons'
 - Company VAT or EIN/FTIN number
 */
 
-const ContactInfoForm = ({ companyRequired = false, onChange }) => {
-  const ENTITY_COMPANY = 'Company'
+const ENTITY_COMPANY = 'Company'
+
+const ContactInfoForm = ({
+  showFields = ['entityType', 'name', 'tax_id', 'email'],
+  companyRequired = false,
+  onChange
+}) => {
   const [entityType, setEntityType] = useState(ENTITY_COMPANY)
   const [contactInfo, setContactInfo] = useState({
     name: '',
     tax_id: '',
     email: ''
   })
+
   const setContactInfoAndUpdate = (props) => {
     setContactInfo(props)
     onChange && onChange(props)
@@ -33,51 +39,64 @@ const ContactInfoForm = ({ companyRequired = false, onChange }) => {
 
   return (
     <form>
-      This is a:
-      <RadioButtons
-        group='entityType'
-        options={[ENTITY_COMPANY, 'Person']}
-        value={entityType}
-        onChange={setEntityType}
-      />
+      {showFields.includes('name') && (
+        <>
+          This is a:
+          <RadioButtons
+            group='entityType'
+            options={[ENTITY_COMPANY, 'Person']}
+            value={entityType}
+            onChange={setEntityType}
+          />
 
-      {companyRequiredMessage && (
-        <p>{companyRequiredMessage}.</p>
+          {companyRequiredMessage && (
+            <p>{companyRequiredMessage}.</p>
+          )}
+        </>
       )}
 
-      <label>
-        {entityType === ENTITY_COMPANY ? 'Company Name' : 'Name'}
-        <input
-          name='name'
-          placeholder={entityType === ENTITY_COMPANY ? 'Company Name' : 'Name'}
-          required
-          value={contactInfo.name}
-          onChange={handleContactInfoChange}
-        />
-      </label>
-      {entityType === ENTITY_COMPANY && (
+      {showFields.includes('name') && (
         <label>
-          VAT ID (or EIN/FTIN)
+          {entityType === ENTITY_COMPANY ? 'Company Name' : 'Name'}:
+          <input
+            name='name'
+            placeholder={entityType === ENTITY_COMPANY ? 'Company Name' : 'Name'}
+            autoComplete={entityType === ENTITY_COMPANY ? 'organization' : 'name'}
+            required
+            value={contactInfo.name}
+            onChange={handleContactInfoChange}
+          />
+        </label>
+      )}
+
+      {(entityType === ENTITY_COMPANY && showFields.includes('tax_id')) && (
+        <label>
+          VAT ID (or EIN/FTIN):
           <input
             name='tax_id'
             placeholder='VAT ID (or EIN/FTIN)'
+            autoComplete='off'
             required
             value={contactInfo.tax_id}
             onChange={handleContactInfoChange}
           />
         </label>
       )}
-      <label>
-        Email
-        <input
-          name='email'
-          placeholder='Email'
-          required
-          type='email'
-          value={contactInfo.email}
-          onChange={handleContactInfoChange}
-        />
-      </label>
+
+      {showFields.includes('email') && (
+        <label>
+          Email:
+          <input
+            name='email'
+            placeholder='Email'
+            required
+            type='email'
+            autoComplete='email'
+            value={contactInfo.email}
+            onChange={handleContactInfoChange}
+          />
+        </label>
+      )}
     </form>
   )
 }
