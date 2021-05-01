@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { loadStripe } from '@stripe/stripe-js'
 import { useStripe, useElements, CardNumberElement, CardCvcElement, CardExpiryElement, Elements } from '@stripe/react-stripe-js'
@@ -12,9 +12,11 @@ export const StripeCardFormSplitWithoutElements = ({
 }) => {
   const stripe = useStripe()
   const elements = useElements()
+  const [inProgress, setInProgress] = useState(false)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    setInProgress(true)
 
     // Stripe.js has not loaded yet. Make sure to disable form submission until Stripe.js has loaded.
     if (!stripe || !elements) return
@@ -25,6 +27,7 @@ export const StripeCardFormSplitWithoutElements = ({
     })
 
     onResponse({ stripe, paymentMethod, card: elements.getElement(CardNumberElement), error })
+    setInProgress(false)
   }
 
   return (
@@ -51,7 +54,7 @@ export const StripeCardFormSplitWithoutElements = ({
           options={stripeOptions}
         />
       </label>
-      <button type='submit' disabled={!stripe}>
+      <button type='submit' disabled={!stripe || inProgress}>
         {buttonLabel}
       </button>
     </form>
