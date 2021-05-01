@@ -4,6 +4,11 @@ React payment components that require _zero_ configuration.
 
 See also https://github.com/tomsoderlund/react-zeroconfig-components
 
+## Design goals
+
+- “Plug and play” Stripe integration
+- Simple backend requirements – basically just mirror Stripe’s API
+
 
 ## Installation
 
@@ -33,6 +38,14 @@ Create an `.env` file for testing (see `.env.example`).
 
 See the Storybook stories in `/stories` to see how the components are used in code, including more advanced use cases.
 
+### StripePaymentForm
+
+    <StripePaymentForm
+      {...props docs coming soon}
+    />
+
+![StripePaymentForm](docs/StripePaymentForm.png)
+
 ### StripeCardFormOneRow
 
     <StripeCardFormOneRow
@@ -49,18 +62,10 @@ See the Storybook stories in `/stories` to see how the components are used in co
 
 ![StripeCardFormSplit](docs/StripeCardFormSplit.png)
 
-### StripePaymentForm
-
-    <StripePaymentForm
-      {...props docs coming soon}
-    />
-
-![StripePaymentForm](docs/StripePaymentForm.png)
-
 
 ## Example server backend
 
-    curl -X POST -H 'Content-type: application/json' --data '{ "amount": 100 }' http://localhost:6007/api/stripe/paymentIntents
+    curl -X POST -H 'Content-type: application/json' --data '{ "amount": 100 }' http://localhost:6007/api/stripe/payment_intents
 
 
 ## Styling
