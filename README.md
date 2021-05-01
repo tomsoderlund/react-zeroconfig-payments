@@ -38,8 +38,8 @@ See [“Example server backend”](#example-server-backend) below.
     - [x] One-time payments
     - [ ] Recurring subscriptions
     - [x] UX: Select either “one row” or “split fields” layout (merge StripeCardForm*)
-    - [ ] VAT number
-    - [ ] Be able to use StripeCardForm* stand-alone without StripePaymentForm
+    - [ ] [VAT numbers](https://stripe.com/docs/api/customer_tax_ids/create?lang=node)
+    - [ ] Minimal form for returning customers
   - [ ] Paddle
   - [ ] ChargeBee
 - [x] API mockup on http://localhost:6007/api/stripe (see [“Example server backend”](#example-server-backend) below)
