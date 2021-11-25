@@ -3,9 +3,9 @@ import { action } from '@storybook/addon-actions'
 
 import '../styles.css'
 import StripeCardForm from '../../src/components/stripe/StripeCardForm'
-import ShowResponse from '../helpComponents/ShowResponse'
-import '../helpComponents/ShowResponse.css'
-import HelpInstructions from '../helpComponents/HelpInstructions'
+import ShowResponse from '../_helpers/components/ShowResponse'
+import '../_helpers/components/ShowResponse.css'
+import HelpInstructions from '../_helpers/components/HelpInstructions'
 
 // ----- Story -----
 
