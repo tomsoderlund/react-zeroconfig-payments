@@ -4,6 +4,7 @@ React payment components that require _zero_ configuration.
 
 See also https://github.com/tomsoderlund/react-zeroconfig-components
 
+
 ## Design goals
 
 - “Plug and play” Stripe integration – just drop a component into your project
@@ -92,9 +93,11 @@ This component is client-side only, does not require backend routes.
 
 ## Example server backend
 
-    curl -X POST -H 'Content-type: application/json' --data '{ "amount": 100 }' http://localhost:6007/api/stripe/payment_intents
+Mock API running inside Storybook. See the source code in `stories/server/stripeServer.js`
 
-See the source code in `stories/server/stripeServer.js`
+Example API call:
+
+    curl -X POST -H 'Content-type: application/json' --data '{ "amount": 100 }' http://localhost:6007/api/stripe/payment_intents
 
 
 ## Styling
