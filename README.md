@@ -55,7 +55,9 @@ See the Storybook stories in `/stories` to see how the components are used in co
 
 ### StripePaymentForm
 
-*Note:* this component uses Stripe server API, it requires backend routes.
+This is the main component. It uses `StripeCardForm` and `ContactInfoForm`.
+
+**Note:** this component uses Stripe server API, it requires backend routes.
 
     <StripePaymentForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
@@ -77,7 +79,7 @@ This component is client-side only, does not require backend routes.
 
 ![StripeCardForm](docs/StripeCardForm.png)
 
-### StripeCardForm: oneRow
+#### StripeCardForm: oneRow
 
     <StripeCardForm
       oneRow={true}
