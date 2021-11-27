@@ -13,7 +13,7 @@ export default {
   title: 'Stripe/StripePaymentForm'
 }
 
-const Template = ({ oneRow, buttonLabel, showFields }) => {
+const Template = (props) => {
   const [response, setResponse] = useState()
 
   const handleResponse = (response) => {
@@ -26,15 +26,13 @@ const Template = ({ oneRow, buttonLabel, showFields }) => {
       <HelpInstructions />
 
       <StripePaymentForm
+        {...props}
         stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
         stripeCustomerId={process.env.STRIPE_CUSTOMER_ID}
         amountDecimals={2.00}
         currency='eur'
         companyRequired={false}
         onResponse={handleResponse}
-        oneRow={oneRow}
-        buttonLabel={buttonLabel}
-        showFields={showFields}
       />
 
       <ShowResponse
