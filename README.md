@@ -137,7 +137,7 @@ This component is client-side only, does not require backend routes.
       onResponse={({ paymentMethod, error }) => {...}}
     />
 
-![StripeCardForm: oneRow](docs/StripeCardFormOneRow.png)
+![StripeCardForm: oneRow](docs/StripeCardForm-OneRow.png)
 
 
 ## Example server backend
@@ -169,6 +169,10 @@ Preview components in Storybook:
     yarn storybook
 
 ...then open http://localhost:6007/ in your browser.
+
+Test components:
+
+    yarn unit
 
 ### How to build and publish a new NPM package
 

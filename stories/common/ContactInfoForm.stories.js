@@ -2,7 +2,7 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 
 import '../styles.css'
-import ContactInfoForm from '../../src/components/common/ContactInfoForm'
+import { ContactInfoForm } from '../../src/components'
 
 // ----- Story -----
 
