@@ -138,7 +138,7 @@ This component is client-side only, does not require backend routes.
 
 ## Example server backend
 
-Mock API running inside Storybook. See the source code in `stories/server/stripeServer.js`.
+Mock API running inside Storybook. See the source code in `stories/_helpers/server/stripeServer.js`.
 
 Example API call:
 
