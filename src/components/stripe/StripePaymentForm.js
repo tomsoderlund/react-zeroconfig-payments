@@ -15,6 +15,7 @@ import ContactInfoForm from '../common/ContactInfoForm'
 import StripeCardForm from './StripeCardForm'
 
 const StripePaymentForm = ({
+  apiPathRoot = '/api/stripe/',
   stripeAppPublicKey,
   stripeCustomerId,
   companyRequired = false,
@@ -34,8 +35,8 @@ const StripePaymentForm = ({
   // TODO: move to CardForm?
   const createOrUpdatePaymentIntent = async (newPaymentIntent = {}) => {
     const url = paymentIntent?.id
-      ? `/api/stripe/payment_intents/${paymentIntent.id}`
-      : '/api/stripe/payment_intents'
+      ? `${apiPathRoot}payment_intents/${paymentIntent.id}`
+      : `${apiPathRoot}payment_intents`
     const results = await makeRestRequest('POST', url, {
       ...(customer?.id && {
         customer: customer.id
@@ -48,8 +49,8 @@ const StripePaymentForm = ({
 
   const createOrUpdateCustomer = async (newCustomer = {}) => {
     const url = customer?.id
-      ? `/api/stripe/customers/${customer.id}`
-      : '/api/stripe/customers'
+      ? `${apiPathRoot}customers/${customer.id}`
+      : `${apiPathRoot}customers`
     const results = await makeRestRequest('POST', url, newCustomer)
     setCustomer(results)
     return results
