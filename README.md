@@ -44,12 +44,21 @@ Create an `.env` file for testing (see `.env.example`).
 
 ### Set up server routes
 
+Required routes for `StripePaymentForm` and `StripeSubscriptionForm`:
+
+- POST `/api/stripe/customers`
+- POST `/api/stripe/customers/:id`
+
 Required routes for `StripePaymentForm`:
 
 - POST `/api/stripe/payment_intents`
 - POST `/api/stripe/payment_intents/:id`
-- POST `/api/stripe/customers`
-- POST `/api/stripe/customers/:id`
+
+Required routes for `StripeSubscriptionForm`:
+
+- POST `/api/stripe/payment_methods/:id`
+- POST `/api/stripe/subscriptions`
+- POST `/api/stripe/subscriptions/:id`
 
 See [“Example server backend”](#example-server-backend) below.
 
@@ -62,7 +71,7 @@ See the Storybook stories in `/stories` to see how the components are used in co
 
 This is the main component for **one-time payments**. It uses `StripeCardForm` and `ContactInfoForm`.
 
-**Note:** this component uses Stripe server API, it requires backend routes.
+**Note:** this component uses Stripe server API, it requires [backend routes](#set-up-server-routes).
 
     <StripePaymentForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
@@ -77,7 +86,7 @@ This is the main component for **one-time payments**. It uses `StripeCardForm` a
 
 This is the main component for **recurring subscriptions**. It uses `StripeCardForm` and `ContactInfoForm`.
 
-**Note:** this component uses Stripe server API, it requires backend routes.
+**Note:** this component uses Stripe server API, it requires [backend routes](#set-up-server-routes).
 
     <StripeSubscriptionForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
