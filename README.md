@@ -19,15 +19,17 @@ See also https://github.com/tomsoderlund/react-zeroconfig-components
   - [x] Stripe
     - [x] One-time payments
       - [ ] Minimal form for returning customers (known stripeCustomerId)
-    - [ ] Recurring subscriptions
+    - [X] Recurring subscriptions
+    - [ ] [VAT support](https://stripe.com/docs/api/customer_tax_ids/create?lang=node) and [tax rates](https://stripe.com/docs/api/subscriptions/create#tax_rates)
     - [x] UX: Select either “one row” or “split fields” layout (merge StripeCardForm*)
-    - [ ] [VAT numbers](https://stripe.com/docs/api/customer_tax_ids/create?lang=node)
   - [ ] Paddle
   - [ ] ChargeBee
 - [x] API mockup on http://localhost:6007/api/stripe (see [“Example server backend”](#example-server-backend) below)
 - Accessibility:
   - [x] All components use `button` where applicable
   - [x] Keyboard/tab support
+- Documentation:
+  - [ ] Storybook site published to GitHub Pages
 
 
 ## Installation
@@ -56,7 +58,7 @@ See the Storybook stories in `/stories` to see how the components are used in co
 
 ### StripePaymentForm
 
-This is the main component. It uses `StripeCardForm` and `ContactInfoForm`.
+This is the main component for **one-time payments**. It uses `StripeCardForm` and `ContactInfoForm`.
 
 **Note:** this component uses Stripe server API, it requires backend routes.
 
@@ -68,6 +70,21 @@ This is the main component. It uses `StripeCardForm` and `ContactInfoForm`.
     />
 
 ![StripePaymentForm](docs/StripePaymentForm.png)
+
+### StripeSubscriptionForm
+
+This is the main component for **recurring subscriptions**. It uses `StripeCardForm` and `ContactInfoForm`.
+
+**Note:** this component uses Stripe server API, it requires backend routes.
+
+    <StripeSubscriptionForm
+      stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
+      amountDecimals={9.90}
+      currency='eur'
+      onResponse={({ paymentIntent, error }) => {...}}
+    />
+
+![StripeSubscriptionForm](docs/StripeSubscriptionForm.png)
 
 ### StripeCardForm
 
@@ -98,6 +115,8 @@ Mock API running inside Storybook. See the source code in `stories/server/stripe
 Example API call:
 
     curl -X POST -H 'Content-type: application/json' --data '{ "amount": 100 }' http://localhost:6007/api/stripe/payment_intents
+
+NOTE: you need to restart `yarn dev` if you modify the server routes.
 
 
 ## Styling

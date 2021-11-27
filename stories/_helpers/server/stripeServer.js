@@ -39,6 +39,11 @@ const stripeMockupServerHandler = (router) => {
   //   async (req, res) => res.send(await stripe.paymentIntents[req.params.action](req.body)), { req, res }
   // ))
 
+  // payment_methods – https://stripe.com/docs/api/payment_methods
+  router.post('/api/stripe/payment_methods/:id', (req, res) => handleRestRequest(
+    async (req, res) => res.send(await stripe.paymentMethods.attach(req.params.id, req.body)), { req, res }
+  ))
+
   // customers – https://stripe.com/docs/api/customers
   router.post('/api/stripe/customers', (req, res) => handleRestRequest(
     async (req, res) => res.send(await stripe.customers.create(req.body)), { req, res }
@@ -48,6 +53,17 @@ const stripeMockupServerHandler = (router) => {
   ))
   // router.delete('/api/stripe/customers/:id', (req, res) => handleRestRequest(
   //   async (req, res) => res.send(await stripe.customers.del(req.params.id)), { req, res }
+  // ))
+
+  // subscriptions – https://stripe.com/docs/api/subscriptions
+  router.post('/api/stripe/subscriptions', (req, res) => handleRestRequest(
+    async (req, res) => res.send(await stripe.subscriptions.create(req.body)), { req, res }
+  ))
+  router.post('/api/stripe/subscriptions/:id', (req, res) => handleRestRequest(
+    async (req, res) => res.send(await stripe.subscriptions.update(req.params.id, req.body)), { req, res }
+  ))
+  // router.delete('/api/stripe/subscriptions/:id', (req, res) => handleRestRequest(
+  //   async (req, res) => res.send(await stripe.subscriptions.del(req.params.id)), { req, res }
   // ))
 }
 
