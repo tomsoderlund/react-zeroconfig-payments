@@ -25,6 +25,8 @@ See also https://github.com/tomsoderlund/react-zeroconfig-components
   - [ ] Paddle
   - [ ] ChargeBee
 - [x] API mockup on http://localhost:6007/api/stripe (see [“Example server backend”](#example-server-backend) below)
+- UX:
+  - [ ] Disable form until subscriptions are completed (`inProgress`)
 - Accessibility:
   - [x] All components use `button` where applicable
   - [x] Keyboard/tab support
@@ -79,12 +81,26 @@ This is the main component for **recurring subscriptions**. It uses `StripeCardF
 
     <StripeSubscriptionForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
+
+      stripePriceId='price_XXXX'
+
+      metadata={{ flavor: 'banana' }}
+      onResponse={({ id, error }) => {...}}
+    />
+
+or:
+
+    <StripeSubscriptionForm
+      stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
+
       stripeProductId='prod_XXXX'
       interval='month'
       intervalCount={1}
       amountDecimals={9.90}
       currency='eur'
-      onResponse={({ paymentIntent, error }) => {...}}
+
+      metadata={{ flavor: 'banana' }}
+      onResponse={({ id, error }) => {...}}
     />
 
 ![StripeSubscriptionForm](docs/StripeSubscriptionForm.png)
@@ -113,13 +129,13 @@ This component is client-side only, does not require backend routes.
 
 ## Example server backend
 
-Mock API running inside Storybook. See the source code in `stories/server/stripeServer.js`
+Mock API running inside Storybook. See the source code in `stories/server/stripeServer.js`.
 
 Example API call:
 
     curl -X POST -H 'Content-type: application/json' --data '{ "amount": 100 }' http://localhost:6007/api/stripe/payment_intents
 
-NOTE: you need to restart `yarn dev` if you modify the server routes.
+NOTE: you need to restart `yarn dev` if you modify `stripeServer.js`.
 
 
 ## Styling

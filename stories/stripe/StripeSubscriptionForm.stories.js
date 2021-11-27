@@ -49,6 +49,13 @@ export const Default = () => (
   <Template />
 )
 
+export const ExistingPriceID = () => (
+  <Template
+    stripePriceId={process.env.STRIPE_PRICE_ID}
+    metadata={{ comment: 'ExistingPriceID' }}
+  />
+)
+
 export const OneRow = () => (
   <Template
     oneRow

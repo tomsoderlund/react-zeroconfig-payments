@@ -17,14 +17,19 @@ import StripeCardForm from './StripeCardForm'
 const StripeSubscriptionForm = ({
   apiPathRoot = '/api/stripe/',
   stripeAppPublicKey,
+
+  // Either stripePriceId...
+  stripePriceId,
+  // ...or these fields:
   stripeProductId,
-  stripeCustomerId,
-  companyRequired = false,
-  onResponse,
   amountDecimals,
   currency = 'usd',
   interval = 'month',
   intervalCount = 1,
+
+  stripeCustomerId,
+  companyRequired = false,
+  onResponse,
   buttonLabel = 'Start subscription',
   oneRow,
   showFields,
@@ -74,17 +79,19 @@ const StripeSubscriptionForm = ({
     customer: newCustomer ? newCustomer.id : customer.id,
     items: [
       {
-        price_data: {
-          product: stripeProductId,
-          currency,
-          recurring: {
-            interval,
-            interval_count: intervalCount
-          },
-          unit_amount: Math.round(amountDecimals * 100)
-          // unit_amount_decimal: amountDecimals * 100
-          // tax_behavior
-        }
+        ...(stripePriceId ? ({ price: stripePriceId }) : ({
+          price_data: {
+            product: stripeProductId,
+            currency,
+            recurring: {
+              interval,
+              interval_count: intervalCount
+            },
+            unit_amount: Math.round(amountDecimals * 100)
+            // unit_amount_decimal: amountDecimals * 100
+            // tax_behavior
+          }
+        }))
       }
       // quantity
       // tax_rates
