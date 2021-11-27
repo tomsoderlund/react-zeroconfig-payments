@@ -1,6 +1,6 @@
 import React from 'react'
 
-import asObject from '../../lib/asObject'
+import asObject from '../lib/asObject'
 
 const MenuItem = ({ group, index, option, name, selected, currentValue, handleChange }) => {
   const elementId = `${group}-${option.value}`

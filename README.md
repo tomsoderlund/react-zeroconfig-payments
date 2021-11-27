@@ -73,6 +73,8 @@ This is the main component for **one-time payments**. It uses `StripeCardForm` a
 
 **Note:** this component uses Stripe server API, it requires [backend routes](#set-up-server-routes).
 
+    import { StripePaymentForm } from 'react-zeroconfig-payments'
+    
     <StripePaymentForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
       amountDecimals={9.90}
@@ -88,6 +90,8 @@ This is the main component for **recurring subscriptions**. It uses `StripeCardF
 
 **Note:** this component uses Stripe server API, it requires [backend routes](#set-up-server-routes).
 
+    import { StripeSubscriptionForm } from 'react-zeroconfig-payments'
+    
     <StripeSubscriptionForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
 

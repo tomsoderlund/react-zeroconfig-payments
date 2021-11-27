@@ -9,7 +9,7 @@ import React, { useState } from 'react'
 
 import { loadStripe } from '@stripe/stripe-js'
 import { useStripe, useElements, CardElement, CardNumberElement, CardCvcElement, CardExpiryElement, Elements } from '@stripe/react-stripe-js'
-import DEFAULT_STRIPE_OPTIONS from '../../lib/stripeOptions'
+import DEFAULT_STRIPE_OPTIONS from '../lib/stripeOptions'
 
 export const StripeCardForm = ({
   stripeOptions = DEFAULT_STRIPE_OPTIONS,

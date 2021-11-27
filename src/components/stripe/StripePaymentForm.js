@@ -9,7 +9,7 @@ import React, { useState, useEffect } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 
-import makeRestRequest from '../../lib/makeRestRequest'
+import makeRestRequest from '../lib/makeRestRequest'
 
 import ContactInfoForm from '../common/ContactInfoForm'
 import StripeCardForm from './StripeCardForm'
