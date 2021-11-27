@@ -29,7 +29,7 @@ const Template = ({ oneRow, buttonLabel, showFields }) => {
         stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
         amountDecimals={2.00}
         currency='eur'
-        customerId='cus_JP7lD57IzN7RGC'
+        customerId={process.env.STRIPE_CUSTOMER_ID}
         companyRequired={false}
         onResponse={handleResponse}
         oneRow={oneRow}
