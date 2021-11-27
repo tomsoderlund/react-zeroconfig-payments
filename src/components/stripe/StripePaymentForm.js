@@ -16,7 +16,7 @@ import StripeCardForm from './StripeCardForm'
 
 const StripePaymentForm = ({
   stripeAppPublicKey,
-  customerId,
+  stripeCustomerId,
   companyRequired = false,
   onResponse,
   amountDecimals,
@@ -25,7 +25,7 @@ const StripePaymentForm = ({
   oneRow,
   showFields
 }) => {
-  const [customer, setCustomer] = useState({ id: customerId })
+  const [customer, setCustomer] = useState({ id: stripeCustomerId })
   const [paymentIntent, setPaymentIntent] = useState()
   const [contactInfo, setContactInfo] = useState()
 

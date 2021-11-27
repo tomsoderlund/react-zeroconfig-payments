@@ -27,9 +27,9 @@ const Template = ({ oneRow, buttonLabel, showFields }) => {
 
       <StripePaymentForm
         stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
+        stripeCustomerId={process.env.STRIPE_CUSTOMER_ID}
         amountDecimals={2.00}
         currency='eur'
-        customerId={process.env.STRIPE_CUSTOMER_ID}
         companyRequired={false}
         onResponse={handleResponse}
         oneRow={oneRow}
