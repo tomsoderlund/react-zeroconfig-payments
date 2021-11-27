@@ -81,8 +81,8 @@ const StripeSubscriptionForm = ({
             interval,
             interval_count: intervalCount
           },
-          unit_amount_decimal: amountDecimals
-          // unit_amount
+          unit_amount: Math.round(amountDecimals * 100)
+          // unit_amount_decimal: amountDecimals * 100
           // tax_behavior
         }
       }
@@ -105,10 +105,9 @@ const StripeSubscriptionForm = ({
     await createPaymentMethod(paymentMethod, newCustomer?.id)
     // Start subscription
     const results = await createOrUpdateSubscription(formatSubscriptionObject({ newCustomer, paymentMethod }))
+    // console.log('StripeSubscriptionForm:', { results })
     onResponse(results)
   }
-
-  // console.log('StripeSubscriptionForm:', { subscription, customer, currentPaymentMethod, contactInfo })
 
   return (
     <>
