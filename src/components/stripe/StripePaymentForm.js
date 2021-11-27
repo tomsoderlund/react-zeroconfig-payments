@@ -30,7 +30,10 @@ const StripePaymentForm = ({
   const [paymentIntent, setPaymentIntent] = useState()
   const [contactInfo, setContactInfo] = useState()
 
-  const buttonLabelFormatted = buttonLabel ? buttonLabel.replace('{amountDecimals}', amountDecimals) : undefined
+  const buttonLabelFormatted = buttonLabel
+    ? buttonLabel.replace('{amountDecimals}', amountDecimals)
+      .replace('{currency}', currency.toUpperCase())
+    : undefined
 
   // TODO: move to CardForm?
   const createOrUpdatePaymentIntent = async (newPaymentIntent = {}) => {

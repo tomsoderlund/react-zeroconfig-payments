@@ -63,6 +63,6 @@ export const OneRowWithEmail = () => (
 
 export const ButtonLabel = () => (
   <Template
-    buttonLabel='Pay €{amountDecimals}'
+    buttonLabel='Pay {amountDecimals} {currency}'
   />
 )
