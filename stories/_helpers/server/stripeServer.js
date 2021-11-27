@@ -47,7 +47,7 @@ const stripeMockupServerHandler = (router) => {
     async (req, res) => res.send(await stripe.customers.update(req.params.id, req.body)), { req, res }
   ))
   // router.delete('/api/stripe/customers/:id', (req, res) => handleRestRequest(
-  //   async (req, res) => res.send(await stripe.customers.delete(req.params.id)), { req, res }
+  //   async (req, res) => res.send(await stripe.customers.del(req.params.id)), { req, res }
   // ))
 }
 
