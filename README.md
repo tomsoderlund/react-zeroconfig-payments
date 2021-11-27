@@ -79,6 +79,9 @@ This is the main component for **recurring subscriptions**. It uses `StripeCardF
 
     <StripeSubscriptionForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
+      stripeProductId='prod_XXXX'
+      interval='month'
+      intervalCount={1}
       amountDecimals={9.90}
       currency='eur'
       onResponse={({ paymentIntent, error }) => {...}}
