@@ -64,6 +64,6 @@ export const OneRowWithEmail = () => (
 
 export const ButtonLabel = () => (
   <Template
-    buttonLabel='Pay {amountDecimals} {currency}'
+    buttonLabel='Pay {amountDecimals} {currency} every {intervalCount} {interval}(s)'
   />
 )
