@@ -5,7 +5,7 @@
  * @author Tom Söderlund
  */
 
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 
 import { loadStripe } from '@stripe/stripe-js'
 import { useStripe, useElements, CardElement, CardNumberElement, CardCvcElement, CardExpiryElement, Elements } from '@stripe/react-stripe-js'
@@ -96,7 +96,7 @@ const FieldsOneRow = ({ stripeOptions }) => {
 }
 
 const StripeCardFormWithElements = (props) => {
-  const stripePromise = loadStripe(props.stripeAppPublicKey)
+  const stripePromise = useMemo(() => loadStripe(props.stripeAppPublicKey), [props.stripeAppPublicKey])
   return (
     <Elements stripe={stripePromise}>
       <StripeCardForm
