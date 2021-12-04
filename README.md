@@ -18,6 +18,7 @@ See also https://github.com/tomsoderlund/react-zeroconfig-components
 - Payment systems:
   - [x] Stripe
     - [x] One-time payments
+      - [ ] Support for stripePriceId/stripeProductId
       - [ ] Minimal form for returning customers (known stripeCustomerId)
     - [X] Recurring subscriptions
     - [ ] [VAT support](https://stripe.com/docs/api/customer_tax_ids/create?lang=node) and [tax rates](https://stripe.com/docs/api/subscriptions/create#tax_rates)
