@@ -120,6 +120,23 @@ or:
 
 ![StripeSubscriptionForm](docs/StripeSubscriptionForm.png)
 
+### StripeKlarnaPaymentForm
+
+Special version of the `StripePaymentForm` for Klarna payments.
+
+    <StripeKlarnaPaymentForm
+      stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
+      stripeCustomerId={process.env.STRIPE_CUSTOMER_ID}
+      amountDecimals={99.00}
+      currency='sek'
+      onResponse={handleResponse}
+      returnUrl='http://localhost:6007/api/klarna/return_url'
+    />
+
+Extra props needed:
+
+- returnUrl: redirected after Klarna checkout screen
+
 ### StripeCardForm
 
 This component is client-side only, does not require backend routes.

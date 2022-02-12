@@ -17,10 +17,11 @@ const StripeKlarnaPaymentForm = ({
   stripeAppPublicKey,
   stripeCustomerId,
   onResponse,
+  returnUrl,
   amountDecimals,
   currency = 'usd',
   buttonLabel = 'Pay with Klarna',
-  showFields
+  showFields = ['email']
 }) => {
   const [customer, setCustomer] = useState({ id: stripeCustomerId })
   const [paymentIntent, setPaymentIntent] = useState()
@@ -83,11 +84,11 @@ const StripeKlarnaPaymentForm = ({
           billing_details: {
             email,
             address: {
-              country: 'SE'
+              country: newCustomer?.address?.country
             }
           }
         },
-        return_url: 'http://localhost:6007/?path=/story/stripe-stripeklarnapaymentform--default'
+        return_url: returnUrl
       }
     )
 
@@ -100,7 +101,7 @@ const StripeKlarnaPaymentForm = ({
     <>
       <ContactInfoForm
         onChange={setContactInfo}
-        showFields={['email']}
+        showFields={showFields}
       />
 
       <button

@@ -28,7 +28,9 @@ const Template = (props) => {
         stripeCustomerId={process.env.STRIPE_CUSTOMER_ID}
         amountDecimals={99.00}
         currency='sek'
+        countryCode='se'
         onResponse={handleResponse}
+        returnUrl='http://localhost:6007/api/klarna/return_url'
       />
 
       <ShowResponse

@@ -9,7 +9,7 @@ const stripe = require('stripe')(process.env.STRIPE_APP_SECRET_KEY)
 
 // ----- Common -----
 
-/** export default (req, res) => handleRestRequest(async (req, res) => {...}, { req, res }) */
+/** (req, res) => handleRestRequest(async (req, res) => {...}, { req, res }) */
 const handleRestRequest = async function handleRestRequest (actionFunction, { req, res }) {
   try {
     await actionFunction(req, res)
@@ -65,6 +65,18 @@ const stripeMockupServerHandler = (router) => {
   // router.delete('/api/stripe/subscriptions/:id', (req, res) => handleRestRequest(
   //   async (req, res) => res.send(await stripe.subscriptions.del(req.params.id)), { req, res }
   // ))
+
+  // Klarna post-payment
+  // query: { payment_intent, payment_intent_client_secret, redirect_status }
+  router.get('/api/klarna/return_url', (req, res) => handleRestRequest(
+    async (req, res) => {
+      const paymentIntent = await stripe.paymentIntents.retrieve(req.query.payment_intent)
+      res.json({
+        ...req.query,
+        paymentIntent
+      })
+    }, { req, res }
+  ))
 }
 
 module.exports = stripeMockupServerHandler
