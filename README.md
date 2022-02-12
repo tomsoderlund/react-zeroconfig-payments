@@ -45,7 +45,7 @@ Create an `.env` file for testing (see `.env.example`).
 
 ### Set up server routes
 
-Required routes for `StripePaymentForm` and `StripeSubscriptionForm`:
+Required routes for `StripePaymentForm` and `StripeSubscriptionForm` (note: you can override the `/api/stripe` bit with the `apiPathRoot` prop on the React components):
 
 - POST `/api/stripe/customers`
 - POST `/api/stripe/customers/:id`
@@ -140,6 +140,21 @@ This component is client-side only, does not require backend routes.
 
 ![StripeCardForm: oneRow](docs/StripeCardForm-OneRow.png)
 
+## Stripe payment flow
+
+One-time payments (https://dashboard.stripe.com/payments):
+
+1. Create a Stripe customer
+1. Create a payment intent
+1. Get payment method from the browser
+1. Confirm card payment
+
+Subscriptions (https://dashboard.stripe.com/subscriptions):
+
+1. Create a Stripe customer
+1. Get payment method from the browser
+1. Set up the payment method on Stripe
+1. Create a subscription
 
 ## Example server backend
 
