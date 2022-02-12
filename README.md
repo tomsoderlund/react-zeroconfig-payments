@@ -23,6 +23,7 @@ See also https://github.com/tomsoderlund/react-zeroconfig-components
     - [X] Recurring subscriptions
     - [ ] [VAT support](https://stripe.com/docs/api/customer_tax_ids/create?lang=node) and [tax rates](https://stripe.com/docs/api/subscriptions/create#tax_rates)
     - [x] UX: Select either “one row” or “split fields” layout (merge StripeCardForm*)
+    - [ ] Klarna payments
   - [ ] Paddle
   - [ ] ChargeBee
 - [x] API mockup on http://localhost:6007/api/stripe (see [“Example server backend”](#example-server-backend) below)
