@@ -1,6 +1,6 @@
 {
   "name": "react-zeroconfig-payments",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "React payment components that require zero configuration.",
   "author": "Tom Söderlund <tom@tomsoderlund.com>",
   "license": "ISC",

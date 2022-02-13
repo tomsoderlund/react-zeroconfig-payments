@@ -73,6 +73,9 @@ const StripeMethodKlarnaForm = ({
     try {
       // Update customer
       const newCustomer = await createOrUpdateCustomer(contactInfo)
+      // Get customer’s new contact info
+      const { email, phone, address } = newCustomer
+
       // If customer has changed, create/update the PaymentIntent
       if (newCustomer.id !== customer?.id) await createOrUpdatePaymentIntent({ customer: newCustomer.id })
 
@@ -81,7 +84,7 @@ const StripeMethodKlarnaForm = ({
         paymentIntent.client_secret,
         {
           payment_method: {
-            billing_details: contactInfo
+            billing_details: { email, phone, address }
           },
           return_url: returnUrl
         }
