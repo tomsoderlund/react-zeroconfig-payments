@@ -16,20 +16,20 @@ See also https://github.com/tomsoderlund/react-zeroconfig-components
 ## Features
 
 - Payment systems:
-  - [x] Stripe
+  - [x] Stripe Card
     - [x] One-time payments
+      - [ ] Field `metadata` on one-time payments (now only subscriptions)
       - [ ] Support for stripePriceId/stripeProductId
       - [ ] Minimal form for returning customers (known stripeCustomerId)
     - [X] Recurring subscriptions
     - [ ] [VAT support](https://stripe.com/docs/api/customer_tax_ids/create?lang=node) and [tax rates](https://stripe.com/docs/api/subscriptions/create#tax_rates)
-    - [ ] Field `metadata` on one-time payments (now only subscriptions)
-    - [x] UX: Select either “one row” or “split fields” layout (merge StripeMethodCardForm*)
-    - [x] Klarna payments
+  - [x] Stripe Klarna payments
   - [ ] Paddle
   - [ ] ChargeBee
 - [x] API mockup on http://localhost:6007/api/stripe (see [“Example server backend”](#example-server-backend) below)
 - UX:
-  - [ ] Disable form until subscriptions are completed (`inProgress`)
+  - [x] Support both “one row” or “split fields” layout (StripeMethodCardForm)
+  - [ ] `inProgress`: Disable form until subscriptions are completed
 - Accessibility:
   - [x] All components use `button` where applicable
   - [x] Keyboard/tab support
