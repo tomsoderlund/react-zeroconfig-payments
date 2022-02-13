@@ -1,6 +1,6 @@
 /**
  * StripePaymentCardForm
- * @description Note: this component uses Stripe server API, it requires backend routes.
+ * @description One-time payments for credit cards. Note: this component uses Stripe server API, it requires backend routes.
  * @module StripePaymentCardForm
  * @author Tom Söderlund
  */
