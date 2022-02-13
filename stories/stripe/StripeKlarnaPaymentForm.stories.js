@@ -25,7 +25,6 @@ const Template = (props) => {
       <StripeKlarnaPaymentForm
         {...props}
         stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
-        stripeCustomerId={process.env.STRIPE_CUSTOMER_ID}
         amountDecimals={99.00}
         currency='sek'
         countryCode='se'
@@ -41,5 +40,13 @@ const Template = (props) => {
 }
 
 export const Default = () => (
-  <Template />
+  <Template
+    stripeCustomerId={process.env.STRIPE_CUSTOMER_ID}
+  />
+)
+
+export const CreateNewCustomer = () => (
+  <Template
+    countryCode='se'
+  />
 )
