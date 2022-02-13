@@ -23,6 +23,7 @@ const StripeMethodKlarnaForm = ({
 }) => {
   const [customer, setCustomer] = useState({ id: stripeCustomerId })
   const [paymentIntent, setPaymentIntent] = useState()
+  const [inProgress, setInProgress] = useState(false)
 
   // Initialize Stripe SDK
   const [stripe, setStripe] = useState()
@@ -68,23 +69,30 @@ const StripeMethodKlarnaForm = ({
   }, [customer?.id, amountDecimals, currency])
 
   const handleStartPayment = async () => {
-    // Update customer
-    const newCustomer = await createOrUpdateCustomer(contactInfo)
-    // If customer has changed, create/update the PaymentIntent
-    if (newCustomer.id !== customer?.id) await createOrUpdatePaymentIntent({ customer: newCustomer.id })
+    setInProgress(true)
+    try {
+      // Update customer
+      const newCustomer = await createOrUpdateCustomer(contactInfo)
+      // If customer has changed, create/update the PaymentIntent
+      if (newCustomer.id !== customer?.id) await createOrUpdatePaymentIntent({ customer: newCustomer.id })
 
-    // Confirm payment with Klarna: redirects away from the client
-    const results = await stripe.confirmKlarnaPayment(
-      paymentIntent.client_secret,
-      {
-        payment_method: {
-          billing_details: contactInfo
-        },
-        return_url: returnUrl
-      }
-    )
-
-    onResponse(results)
+      // Confirm payment with Klarna: redirects away from the client
+      const results = await stripe.confirmKlarnaPayment(
+        paymentIntent.client_secret,
+        {
+          payment_method: {
+            billing_details: contactInfo
+          },
+          return_url: returnUrl
+        }
+      )
+      onResponse(results)
+    } catch (error) {
+      console.error(error)
+      onResponse({ error })
+    } finally {
+      setInProgress(false)
+    }
   }
 
   // console.log('StripeMethodKlarnaForm:', paymentIntent?.id, { paymentIntent, customer, contactInfo })
@@ -93,6 +101,7 @@ const StripeMethodKlarnaForm = ({
     <>
       <button
         onClick={handleStartPayment}
+        disabled={inProgress}
       >
         {buttonLabelFormatted}
       </button>
