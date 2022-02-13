@@ -22,12 +22,16 @@ const Template = (props) => {
 
   return (
     <>
+      <blockquote>
+        Stripe Customer ID: {props.stripeCustomerId || '(not set)'}<br />
+        Contact info: {JSON.stringify(props.contactInfo, undefined, 2)}
+      </blockquote>
+
       <StripePaymentKlarnaForm
         {...props}
         stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
         amountDecimals={99.00}
         currency='sek'
-        countryCode='se'
         onResponse={handleResponse}
         returnUrl='http://localhost:6007/api/klarna/return_url'
       />
@@ -47,6 +51,13 @@ export const Default = () => (
 
 export const CreateNewCustomer = () => (
   <Template
-    countryCode='se'
+    contactInfo={{
+      // See https://stripe.com/docs/api/payment_methods/object#payment_method_object-billing_details for all fields
+      email: 'john.doe@tomorroworld.com',
+      address: {
+        country: 'se',
+        postal_code: '11350'
+      }
+    }}
   />
 )
