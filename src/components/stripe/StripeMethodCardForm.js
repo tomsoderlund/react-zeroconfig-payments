@@ -1,7 +1,7 @@
 /**
- * StripeCardForm
- * @description This component is client-side only, does not require backend routes.
- * @module StripeCardForm
+ * StripeMethodCardForm
+ * @description Payment method input for credit cards. This component is client-side only, does not require backend routes.
+ * @module StripeMethodCardForm
  * @author Tom Söderlund
  */
 
@@ -11,7 +11,7 @@ import { loadStripe } from '@stripe/stripe-js'
 import { useStripe, useElements, CardElement, CardNumberElement, CardCvcElement, CardExpiryElement, Elements } from '@stripe/react-stripe-js'
 import DEFAULT_STRIPE_OPTIONS from '../lib/stripeOptions'
 
-export const StripeCardForm = ({
+export const StripeMethodCardForm = ({
   stripeOptions = DEFAULT_STRIPE_OPTIONS,
   className,
   onResponse,
@@ -95,15 +95,15 @@ const FieldsOneRow = ({ stripeOptions }) => {
   )
 }
 
-const StripeCardFormWithElements = (props) => {
+const StripeMethodCardFormWithElements = (props) => {
   const stripePromise = useMemo(() => loadStripe(props.stripeAppPublicKey), [props.stripeAppPublicKey])
   return (
     <Elements stripe={stripePromise}>
-      <StripeCardForm
+      <StripeMethodCardForm
         {...props}
       />
     </Elements>
   )
 }
 
-export default StripeCardFormWithElements
+export default StripeMethodCardFormWithElements

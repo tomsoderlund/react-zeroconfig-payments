@@ -1,3 +1,3 @@
-const { StripeCardForm } = require('../dist')
+const { StripeMethodCardForm } = require('../dist')
 
-console.log('Test:', { StripeCardForm })
+console.log('Test:', { StripeMethodCardForm })

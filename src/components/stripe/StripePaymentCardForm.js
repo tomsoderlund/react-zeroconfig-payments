@@ -1,7 +1,7 @@
 /**
- * StripePaymentForm
- * @description Note: this component uses Stripe server API, it requires backend routes.
- * @module StripePaymentForm
+ * StripePaymentCardForm
+ * @description One-time payments for credit cards. Note: this component uses Stripe server API, it requires backend routes.
+ * @module StripePaymentCardForm
  * @author Tom Söderlund
  */
 
@@ -12,9 +12,9 @@ import { Elements } from '@stripe/react-stripe-js'
 import makeRestRequest from '../lib/makeRestRequest'
 
 import ContactInfoForm from '../common/ContactInfoForm'
-import StripeCardForm from './StripeCardForm'
+import StripeMethodCardForm from './StripeMethodCardForm'
 
-const StripePaymentForm = ({
+const StripePaymentCardForm = ({
   apiPathRoot = '/api/stripe/',
   stripeAppPublicKey,
   stripeCustomerId,
@@ -74,6 +74,7 @@ const StripePaymentForm = ({
     // Update customer
     const { email, name } = contactInfo
     const newCustomer = await createOrUpdateCustomer({ email, name })
+    // If customer has changed, create/update the PaymentIntent
     if (newCustomer.id !== customer?.id) await createOrUpdatePaymentIntent({ customer: newCustomer.id })
 
     // Confirm payment
@@ -87,7 +88,7 @@ const StripePaymentForm = ({
     onResponse(results)
   }
 
-  // console.log('StripePaymentForm:', { paymentIntent, customer, currentPaymentMethod, contactInfo })
+  // console.log('StripePaymentCardForm:', { paymentIntent, customer, currentPaymentMethod, contactInfo })
 
   return (
     <>
@@ -97,7 +98,7 @@ const StripePaymentForm = ({
         showFields={showFields}
       />
 
-      <StripeCardForm
+      <StripeMethodCardForm
         stripeAppPublicKey={stripeAppPublicKey}
         onResponse={handleStartPayment}
         buttonLabel={buttonLabelFormatted}
@@ -107,15 +108,15 @@ const StripePaymentForm = ({
   )
 }
 
-const StripePaymentFormWithElements = (props) => {
+const StripePaymentCardFormWithElements = (props) => {
   const stripePromise = loadStripe(props.stripeAppPublicKey)
   return (
     <Elements stripe={stripePromise}>
-      <StripePaymentForm
+      <StripePaymentCardForm
         {...props}
       />
     </Elements>
   )
 }
 
-export default StripePaymentFormWithElements
+export default StripePaymentCardFormWithElements

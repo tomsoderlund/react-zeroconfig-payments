@@ -16,18 +16,20 @@ See also https://github.com/tomsoderlund/react-zeroconfig-components
 ## Features
 
 - Payment systems:
-  - [x] Stripe
+  - [x] Stripe Card
     - [x] One-time payments
+      - [ ] Field `metadata` on one-time payments (now only subscriptions)
       - [ ] Support for stripePriceId/stripeProductId
       - [ ] Minimal form for returning customers (known stripeCustomerId)
     - [X] Recurring subscriptions
     - [ ] [VAT support](https://stripe.com/docs/api/customer_tax_ids/create?lang=node) and [tax rates](https://stripe.com/docs/api/subscriptions/create#tax_rates)
-    - [x] UX: Select either “one row” or “split fields” layout (merge StripeCardForm*)
+  - [x] Stripe Klarna payments
   - [ ] Paddle
   - [ ] ChargeBee
 - [x] API mockup on http://localhost:6007/api/stripe (see [“Example server backend”](#example-server-backend) below)
 - UX:
-  - [ ] Disable form until subscriptions are completed (`inProgress`)
+  - [x] Support both “one row” or “split fields” layout (StripeMethodCardForm)
+  - [ ] `inProgress`: Disable form until subscriptions are completed
 - Accessibility:
   - [x] All components use `button` where applicable
   - [x] Keyboard/tab support
@@ -45,17 +47,17 @@ Create an `.env` file for testing (see `.env.example`).
 
 ### Set up server routes
 
-Required routes for `StripePaymentForm` and `StripeSubscriptionForm`:
+Required routes for `StripePaymentCardForm` and `StripeSubscriptionCardForm` (note: you can override the `/api/stripe` bit with the `apiPathRoot` prop on the React components):
 
 - POST `/api/stripe/customers`
 - POST `/api/stripe/customers/:id`
 
-Required routes for `StripePaymentForm`:
+Required routes for `StripePaymentCardForm`:
 
 - POST `/api/stripe/payment_intents`
 - POST `/api/stripe/payment_intents/:id`
 
-Required routes for `StripeSubscriptionForm`:
+Required routes for `StripeSubscriptionCardForm`:
 
 - POST `/api/stripe/payment_methods/:id`
 - POST `/api/stripe/subscriptions`
@@ -68,32 +70,38 @@ See [“Example server backend”](#example-server-backend) below.
 
 See the Storybook stories in `/stories` to see how the components are used in code, including more advanced use cases.
 
-### StripePaymentForm
+Naming convention: [Provider][Action][Method]Form
 
-This is the main component for **one-time payments**. It uses `StripeCardForm` and `ContactInfoForm`.
+- Provider: Stripe, Paddle
+- Action: Payment (one-time), Subscription
+- Method: Card, Klarna
+
+### StripePaymentCardForm
+
+This is the main component for **one-time payments**. It uses `StripeMethodCardForm` and `ContactInfoForm`.
 
 **Note:** this component uses Stripe server API, it requires [backend routes](#set-up-server-routes).
 
-    import { StripePaymentForm } from 'react-zeroconfig-payments'
+    import { StripePaymentCardForm } from 'react-zeroconfig-payments'
     
-    <StripePaymentForm
+    <StripePaymentCardForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
       amountDecimals={9.90}
       currency='eur'
       onResponse={({ paymentIntent, error }) => {...}}
     />
 
-![StripePaymentForm](docs/StripePaymentForm.png)
+![StripePaymentCardForm](docs/StripePaymentCardForm.png)
 
-### StripeSubscriptionForm
+### StripeSubscriptionCardForm
 
-This is the main component for **recurring subscriptions**. It uses `StripeCardForm` and `ContactInfoForm`.
+This is the main component for **recurring subscriptions**. It uses `StripeMethodCardForm` and `ContactInfoForm`.
 
 **Note:** this component uses Stripe server API, it requires [backend routes](#set-up-server-routes).
 
-    import { StripeSubscriptionForm } from 'react-zeroconfig-payments'
+    import { StripeSubscriptionCardForm } from 'react-zeroconfig-payments'
     
-    <StripeSubscriptionForm
+    <StripeSubscriptionCardForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
 
       stripePriceId='price_XXXX'
@@ -104,7 +112,7 @@ This is the main component for **recurring subscriptions**. It uses `StripeCardF
 
 or:
 
-    <StripeSubscriptionForm
+    <StripeSubscriptionCardForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
 
       stripeProductId='prod_XXXX'
@@ -117,29 +125,74 @@ or:
       onResponse={({ id, error }) => {...}}
     />
 
-![StripeSubscriptionForm](docs/StripeSubscriptionForm.png)
+![StripeSubscriptionCardForm](docs/StripeSubscriptionCardForm.png)
 
-### StripeCardForm
+### StripeMethodKlarnaForm
+
+This is a special version of the `StripeMethodCardForm` for Klarna payments. There’s also a `StripePaymentKlarnaForm` that includes fields for contact information.
+
+**Note:** this component uses Stripe server API, it requires [backend routes](#set-up-server-routes).
+
+    import { StripeMethodKlarnaForm } from 'react-zeroconfig-payments'
+
+    <StripeMethodKlarnaForm
+      stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
+      stripeCustomerId={process.env.STRIPE_CUSTOMER_ID}
+      contactInfo={{
+        // See https://stripe.com/docs/api/payment_methods/object#payment_method_object-billing_details for all fields
+        email: 'john.doe@tomorroworld.com',
+        address: {
+          country: 'se',
+          postal_code: '11350'
+        }
+      }}
+      amountDecimals={99.00}
+      currency='sek'
+      onResponse={handleResponse}
+      returnUrl='http://localhost:6007/api/klarna/return_url'
+    />
+
+Extra props needed:
+
+- `contactInfo`: Klarna needs at least email and country. Also, country needs to match the currency.
+- `returnUrl`: where to redirect after completing/cancelling the Klarna checkout screen (a simple test page is set up on http://localhost:6007/api/klarna/return_url)
+
+### StripeMethodCardForm
 
 This component is client-side only, does not require backend routes.
 
-    <StripeCardForm
+    <StripeMethodCardForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
       onResponse={({ paymentMethod, error }) => {...}}
     />
 
-![StripeCardForm](docs/StripeCardForm.png)
+![StripeMethodCardForm](docs/StripeMethodCardForm.png)
 
-#### StripeCardForm: oneRow
+#### StripeMethodCardForm: oneRow
 
-    <StripeCardForm
+    <StripeMethodCardForm
       oneRow={true}
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
       onResponse={({ paymentMethod, error }) => {...}}
     />
 
-![StripeCardForm: oneRow](docs/StripeCardForm-OneRow.png)
+![StripeMethodCardForm: oneRow](docs/StripeMethodCardForm-OneRow.png)
 
+## Stripe payment flow
+
+One-time payments (https://dashboard.stripe.com/payments):
+
+1. Create a Stripe customer
+1. Create a payment intent
+1. Get payment method from the browser (credit card or Klarna checkout)
+1. Confirm card payment
+
+Subscriptions (https://dashboard.stripe.com/subscriptions):
+
+1. Create a Stripe customer
+1. Get payment method from the browser
+1. Set up the payment method on Stripe
+1. Create a subscription
 
 ## Example server backend
 
