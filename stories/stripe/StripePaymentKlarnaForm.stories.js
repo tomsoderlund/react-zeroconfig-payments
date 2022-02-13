@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import { action } from '@storybook/addon-actions'
 
 import '../styles.css'
-import { StripeKlarnaPaymentForm } from '../../src/components'
+import { StripePaymentKlarnaForm } from '../../src/components'
 import ShowResponse from '../_helpers/components/ShowResponse'
 import '../_helpers/components/ShowResponse.css'
 
 // ----- Story -----
 
 export default {
-  title: 'Stripe/StripeKlarnaPaymentForm'
+  title: 'Stripe/StripePaymentKlarnaForm'
 }
 
 const Template = (props) => {
@@ -22,7 +22,7 @@ const Template = (props) => {
 
   return (
     <>
-      <StripeKlarnaPaymentForm
+      <StripePaymentKlarnaForm
         {...props}
         stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
         amountDecimals={99.00}

@@ -120,11 +120,11 @@ or:
 
 ![StripeSubscriptionForm](docs/StripeSubscriptionForm.png)
 
-### StripeKlarnaPaymentForm
+### StripePaymentKlarnaForm
 
 Special version of the `StripePaymentForm` for Klarna payments.
 
-    <StripeKlarnaPaymentForm
+    <StripePaymentKlarnaForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
       stripeCustomerId={process.env.STRIPE_CUSTOMER_ID}
       amountDecimals={99.00}

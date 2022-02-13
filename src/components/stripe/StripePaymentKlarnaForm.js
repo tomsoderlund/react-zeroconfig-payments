@@ -1,7 +1,7 @@
 /**
- * StripeKlarnaPaymentForm
+ * StripePaymentKlarnaForm
  * @description Note: this component uses Stripe server API, it requires backend routes.
- * @module StripeKlarnaPaymentForm
+ * @module StripePaymentKlarnaForm
  * @author Tom Söderlund
  */
 
@@ -12,7 +12,7 @@ import makeRestRequest from '../lib/makeRestRequest'
 
 import ContactInfoForm from '../common/ContactInfoForm'
 
-const StripeKlarnaPaymentForm = ({
+const StripePaymentKlarnaForm = ({
   apiPathRoot = '/api/stripe/',
   stripeAppPublicKey,
   stripeCustomerId,
@@ -96,7 +96,7 @@ const StripeKlarnaPaymentForm = ({
     onResponse(results)
   }
 
-  console.log('StripeKlarnaPaymentForm:', paymentIntent?.id, { paymentIntent, customer, contactInfo })
+  console.log('StripePaymentKlarnaForm:', paymentIntent?.id, { paymentIntent, customer, contactInfo })
 
   return (
     <>
@@ -114,4 +114,4 @@ const StripeKlarnaPaymentForm = ({
   )
 }
 
-export default StripeKlarnaPaymentForm
+export default StripePaymentKlarnaForm
