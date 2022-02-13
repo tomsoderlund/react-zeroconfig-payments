@@ -135,7 +135,7 @@ Special version of the `StripePaymentForm` for Klarna payments.
 
 Extra props needed:
 
-- returnUrl: redirected after Klarna checkout screen
+- returnUrl: where to redirect after completing the Klarna checkout screen (a simple test page is set up on http://localhost:6007/api/klarna/return_url)
 
 ### StripeCardForm
 
@@ -164,7 +164,7 @@ One-time payments (https://dashboard.stripe.com/payments):
 
 1. Create a Stripe customer
 1. Create a payment intent
-1. Get payment method from the browser
+1. Get payment method from the browser (credit card or Klarna checkout)
 1. Confirm card payment
 
 Subscriptions (https://dashboard.stripe.com/subscriptions):
