@@ -96,7 +96,7 @@ const StripePaymentKlarnaForm = ({
     onResponse(results)
   }
 
-  console.log('StripePaymentKlarnaForm:', paymentIntent?.id, { paymentIntent, customer, contactInfo })
+  // console.log('StripePaymentKlarnaForm:', paymentIntent?.id, { paymentIntent, customer, contactInfo })
 
   return (
     <>
