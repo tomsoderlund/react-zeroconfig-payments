@@ -127,6 +127,27 @@ or:
 
 ![StripeSubscriptionCardForm](docs/StripeSubscriptionCardForm.png)
 
+### StripeMethodCardForm
+
+This component is client-side only, does not require backend routes.
+
+    <StripeMethodCardForm
+      stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
+      onResponse={({ paymentMethod, error }) => {...}}
+    />
+
+![StripeMethodCardForm](docs/StripeMethodCardForm.png)
+
+#### StripeMethodCardForm: oneRow
+
+    <StripeMethodCardForm
+      oneRow={true}
+      stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
+      onResponse={({ paymentMethod, error }) => {...}}
+    />
+
+![StripeMethodCardForm: oneRow](docs/StripeMethodCardForm-OneRow.png)
+
 ### StripeMethodKlarnaForm
 
 This is a special version of the `StripeMethodCardForm` for Klarna payments. There’s also a `StripePaymentKlarnaForm` that includes fields for contact information.
@@ -152,31 +173,13 @@ This is a special version of the `StripeMethodCardForm` for Klarna payments. The
       returnUrl='http://localhost:6007/api/klarna/return_url'
     />
 
+![StripeMethodKlarnaForm](docs/StripeMethodKlarnaForm.png)
+
 Extra props needed:
 
 - `contactInfo`: Klarna needs at least email and country. Also, country needs to match the currency.
 - `returnUrl`: where to redirect after completing/cancelling the Klarna checkout screen (a simple test page is set up on http://localhost:6007/api/klarna/return_url)
 
-### StripeMethodCardForm
-
-This component is client-side only, does not require backend routes.
-
-    <StripeMethodCardForm
-      stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
-      onResponse={({ paymentMethod, error }) => {...}}
-    />
-
-![StripeMethodCardForm](docs/StripeMethodCardForm.png)
-
-#### StripeMethodCardForm: oneRow
-
-    <StripeMethodCardForm
-      oneRow={true}
-      stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
-      onResponse={({ paymentMethod, error }) => {...}}
-    />
-
-![StripeMethodCardForm: oneRow](docs/StripeMethodCardForm-OneRow.png)
 
 ## Stripe payment flow
 
@@ -193,6 +196,7 @@ Subscriptions (https://dashboard.stripe.com/subscriptions):
 1. Get payment method from the browser
 1. Set up the payment method on Stripe
 1. Create a subscription
+
 
 ## Example server backend
 
