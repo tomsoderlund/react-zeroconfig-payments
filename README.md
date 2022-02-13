@@ -22,7 +22,7 @@ See also https://github.com/tomsoderlund/react-zeroconfig-components
       - [ ] Minimal form for returning customers (known stripeCustomerId)
     - [X] Recurring subscriptions
     - [ ] [VAT support](https://stripe.com/docs/api/customer_tax_ids/create?lang=node) and [tax rates](https://stripe.com/docs/api/subscriptions/create#tax_rates)
-    - [x] UX: Select either “one row” or “split fields” layout (merge StripeCardForm*)
+    - [x] UX: Select either “one row” or “split fields” layout (merge StripeMethodCardForm*)
     - [ ] Klarna payments
   - [ ] Paddle
   - [ ] ChargeBee
@@ -46,17 +46,17 @@ Create an `.env` file for testing (see `.env.example`).
 
 ### Set up server routes
 
-Required routes for `StripePaymentForm` and `StripeSubscriptionForm` (note: you can override the `/api/stripe` bit with the `apiPathRoot` prop on the React components):
+Required routes for `StripePaymentCardForm` and `StripeSubscriptionCardForm` (note: you can override the `/api/stripe` bit with the `apiPathRoot` prop on the React components):
 
 - POST `/api/stripe/customers`
 - POST `/api/stripe/customers/:id`
 
-Required routes for `StripePaymentForm`:
+Required routes for `StripePaymentCardForm`:
 
 - POST `/api/stripe/payment_intents`
 - POST `/api/stripe/payment_intents/:id`
 
-Required routes for `StripeSubscriptionForm`:
+Required routes for `StripeSubscriptionCardForm`:
 
 - POST `/api/stripe/payment_methods/:id`
 - POST `/api/stripe/subscriptions`
@@ -69,32 +69,32 @@ See [“Example server backend”](#example-server-backend) below.
 
 See the Storybook stories in `/stories` to see how the components are used in code, including more advanced use cases.
 
-### StripePaymentForm
+### StripePaymentCardForm
 
-This is the main component for **one-time payments**. It uses `StripeCardForm` and `ContactInfoForm`.
+This is the main component for **one-time payments**. It uses `StripeMethodCardForm` and `ContactInfoForm`.
 
 **Note:** this component uses Stripe server API, it requires [backend routes](#set-up-server-routes).
 
-    import { StripePaymentForm } from 'react-zeroconfig-payments'
+    import { StripePaymentCardForm } from 'react-zeroconfig-payments'
     
-    <StripePaymentForm
+    <StripePaymentCardForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
       amountDecimals={9.90}
       currency='eur'
       onResponse={({ paymentIntent, error }) => {...}}
     />
 
-![StripePaymentForm](docs/StripePaymentForm.png)
+![StripePaymentCardForm](docs/StripePaymentCardForm.png)
 
-### StripeSubscriptionForm
+### StripeSubscriptionCardForm
 
-This is the main component for **recurring subscriptions**. It uses `StripeCardForm` and `ContactInfoForm`.
+This is the main component for **recurring subscriptions**. It uses `StripeMethodCardForm` and `ContactInfoForm`.
 
 **Note:** this component uses Stripe server API, it requires [backend routes](#set-up-server-routes).
 
-    import { StripeSubscriptionForm } from 'react-zeroconfig-payments'
+    import { StripeSubscriptionCardForm } from 'react-zeroconfig-payments'
     
-    <StripeSubscriptionForm
+    <StripeSubscriptionCardForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
 
       stripePriceId='price_XXXX'
@@ -105,7 +105,7 @@ This is the main component for **recurring subscriptions**. It uses `StripeCardF
 
 or:
 
-    <StripeSubscriptionForm
+    <StripeSubscriptionCardForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
 
       stripeProductId='prod_XXXX'
@@ -118,11 +118,11 @@ or:
       onResponse={({ id, error }) => {...}}
     />
 
-![StripeSubscriptionForm](docs/StripeSubscriptionForm.png)
+![StripeSubscriptionCardForm](docs/StripeSubscriptionCardForm.png)
 
 ### StripePaymentKlarnaForm
 
-Special version of the `StripePaymentForm` for Klarna payments.
+Special version of the `StripePaymentCardForm` for Klarna payments.
 
     <StripePaymentKlarnaForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
@@ -137,26 +137,26 @@ Extra props needed:
 
 - returnUrl: where to redirect after completing the Klarna checkout screen (a simple test page is set up on http://localhost:6007/api/klarna/return_url)
 
-### StripeCardForm
+### StripeMethodCardForm
 
 This component is client-side only, does not require backend routes.
 
-    <StripeCardForm
+    <StripeMethodCardForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
       onResponse={({ paymentMethod, error }) => {...}}
     />
 
-![StripeCardForm](docs/StripeCardForm.png)
+![StripeMethodCardForm](docs/StripeMethodCardForm.png)
 
-#### StripeCardForm: oneRow
+#### StripeMethodCardForm: oneRow
 
-    <StripeCardForm
+    <StripeMethodCardForm
       oneRow={true}
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
       onResponse={({ paymentMethod, error }) => {...}}
     />
 
-![StripeCardForm: oneRow](docs/StripeCardForm-OneRow.png)
+![StripeMethodCardForm: oneRow](docs/StripeMethodCardForm-OneRow.png)
 
 ## Stripe payment flow
 

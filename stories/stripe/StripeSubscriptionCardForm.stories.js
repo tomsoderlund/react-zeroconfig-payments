@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { action } from '@storybook/addon-actions'
 
 import '../styles.css'
-import { StripeSubscriptionForm } from '../../src/components'
+import { StripeSubscriptionCardForm } from '../../src/components'
 import ShowResponse from '../_helpers/components/ShowResponse'
 import '../_helpers/components/ShowResponse.css'
 import HelpInstructions from '../_helpers/components/HelpInstructions'
@@ -10,7 +10,7 @@ import HelpInstructions from '../_helpers/components/HelpInstructions'
 // ----- Story -----
 
 export default {
-  title: 'Stripe/StripeSubscriptionForm'
+  title: 'Stripe/StripeSubscriptionCardForm'
 }
 
 const Template = (props) => {
@@ -25,7 +25,7 @@ const Template = (props) => {
     <>
       <HelpInstructions />
 
-      <StripeSubscriptionForm
+      <StripeSubscriptionCardForm
         {...props}
         stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
         stripeProductId={process.env.STRIPE_PRODUCT_ID}

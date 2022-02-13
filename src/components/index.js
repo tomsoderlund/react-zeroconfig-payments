@@ -1,7 +1,7 @@
 export { default as ContactInfoForm } from './common/ContactInfoForm'
 
-export { default as StripeCardForm } from './stripe/StripeCardForm'
+export { default as StripeMethodCardForm } from './stripe/StripeMethodCardForm'
 
-export { default as StripePaymentForm } from './stripe/StripePaymentForm'
+export { default as StripePaymentCardForm } from './stripe/StripePaymentCardForm'
 export { default as StripePaymentKlarnaForm } from './stripe/StripePaymentKlarnaForm'
-export { default as StripeSubscriptionForm } from './stripe/StripeSubscriptionForm'
+export { default as StripeSubscriptionCardForm } from './stripe/StripeSubscriptionCardForm'

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { action } from '@storybook/addon-actions'
 
 import '../styles.css'
-import { StripePaymentForm } from '../../src/components'
+import { StripeMethodCardForm } from '../../src/components'
 import ShowResponse from '../_helpers/components/ShowResponse'
 import '../_helpers/components/ShowResponse.css'
 import HelpInstructions from '../_helpers/components/HelpInstructions'
@@ -10,29 +10,25 @@ import HelpInstructions from '../_helpers/components/HelpInstructions'
 // ----- Story -----
 
 export default {
-  title: 'Stripe/StripePaymentForm'
+  title: 'Stripe/StripeMethodCardForm'
 }
 
-const Template = (props) => {
+const Template = ({ oneRow }) => {
   const [response, setResponse] = useState()
 
-  const handleResponse = (response) => {
-    action('onResponse')(response)
-    setResponse(response)
+  const handleResponse = (value) => {
+    action('onResponse')(value)
+    setResponse(value)
   }
 
   return (
     <>
       <HelpInstructions />
 
-      <StripePaymentForm
-        {...props}
+      <StripeMethodCardForm
         stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
-        stripeCustomerId={process.env.STRIPE_CUSTOMER_ID}
-        amountDecimals={2.00}
-        currency='eur'
-        companyRequired={false}
         onResponse={handleResponse}
+        oneRow={oneRow}
       />
 
       <ShowResponse
@@ -49,18 +45,5 @@ export const Default = () => (
 export const OneRow = () => (
   <Template
     oneRow
-  />
-)
-
-export const OneRowWithEmail = () => (
-  <Template
-    oneRow
-    showFields={['email']}
-  />
-)
-
-export const ButtonLabel = () => (
-  <Template
-    buttonLabel='Pay {amountDecimals} {currency}'
   />
 )

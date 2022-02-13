@@ -1,7 +1,7 @@
 /**
- * StripeSubscriptionForm
+ * StripeSubscriptionCardForm
  * @description Note: this component uses Stripe server API, it requires backend routes.
- * @module StripeSubscriptionForm
+ * @module StripeSubscriptionCardForm
  * @author Tom Söderlund
  */
 
@@ -12,9 +12,9 @@ import { Elements } from '@stripe/react-stripe-js'
 import makeRestRequest from '../lib/makeRestRequest'
 
 import ContactInfoForm from '../common/ContactInfoForm'
-import StripeCardForm from './StripeCardForm'
+import StripeMethodCardForm from './StripeMethodCardForm'
 
-const StripeSubscriptionForm = ({
+const StripeSubscriptionCardForm = ({
   apiPathRoot = '/api/stripe/',
   stripeAppPublicKey,
 
@@ -112,7 +112,7 @@ const StripeSubscriptionForm = ({
     await createPaymentMethod(paymentMethod, newCustomer?.id)
     // Start subscription
     const results = await createOrUpdateSubscription(formatSubscriptionObject({ newCustomer, paymentMethod }))
-    // console.log('StripeSubscriptionForm:', { results })
+    // console.log('StripeSubscriptionCardForm:', { results })
     onResponse(results)
   }
 
@@ -124,7 +124,7 @@ const StripeSubscriptionForm = ({
         showFields={showFields}
       />
 
-      <StripeCardForm
+      <StripeMethodCardForm
         stripeAppPublicKey={stripeAppPublicKey}
         onResponse={handleStartSubscription}
         buttonLabel={buttonLabelFormatted}
@@ -134,15 +134,15 @@ const StripeSubscriptionForm = ({
   )
 }
 
-const StripeSubscriptionFormWithElements = (props) => {
+const StripeSubscriptionCardFormWithElements = (props) => {
   const stripePromise = loadStripe(props.stripeAppPublicKey)
   return (
     <Elements stripe={stripePromise}>
-      <StripeSubscriptionForm
+      <StripeSubscriptionCardForm
         {...props}
       />
     </Elements>
   )
 }
 
-export default StripeSubscriptionFormWithElements
+export default StripeSubscriptionCardFormWithElements
