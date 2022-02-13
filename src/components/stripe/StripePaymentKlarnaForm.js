@@ -19,8 +19,9 @@ const StripePaymentKlarnaForm = (props) => {
   return (
     <>
       <ContactInfoForm
-        onChange={setContactInfo}
+        defaultValue={props.contactInfo}
         showFields={showFields}
+        onChange={setContactInfo}
       />
 
       <StripeMethodKlarnaForm

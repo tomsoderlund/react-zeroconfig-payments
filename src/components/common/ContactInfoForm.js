@@ -11,16 +11,13 @@ import RadioButtons from './RadioButtons'
 const ENTITY_COMPANY = 'Company'
 
 const ContactInfoForm = ({
+  defaultValue = {},
   showFields = ['entityType', 'name', 'tax_id', 'email'],
   companyRequired = false,
   onChange
 }) => {
   const [entityType, setEntityType] = useState(ENTITY_COMPANY)
-  const [contactInfo, setContactInfo] = useState({
-    name: '',
-    tax_id: '',
-    email: ''
-  })
+  const [contactInfo, setContactInfo] = useState(defaultValue)
 
   const setContactInfoAndUpdate = (props) => {
     setContactInfo(props)
@@ -63,7 +60,7 @@ const ContactInfoForm = ({
             placeholder={entityType === ENTITY_COMPANY ? 'Company Name' : 'Name'}
             autoComplete={entityType === ENTITY_COMPANY ? 'organization' : 'name'}
             required
-            value={contactInfo.name}
+            value={contactInfo.name || ''}
             onChange={handleContactInfoChange}
           />
         </label>
@@ -77,7 +74,7 @@ const ContactInfoForm = ({
             placeholder='VAT ID (or EIN/FTIN)'
             autoComplete='off'
             required
-            value={contactInfo.tax_id}
+            value={contactInfo.tax_id || ''}
             onChange={handleContactInfoChange}
           />
         </label>
@@ -92,7 +89,7 @@ const ContactInfoForm = ({
             required
             type='email'
             autoComplete='email'
-            value={contactInfo.email}
+            value={contactInfo.email || ''}
             onChange={handleContactInfoChange}
           />
         </label>
