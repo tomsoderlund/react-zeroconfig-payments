@@ -1,6 +1,6 @@
 /**
  * StripeMethodCardForm
- * @description This component is client-side only, does not require backend routes.
+ * @description Payment method input for credit cards. This component is client-side only, does not require backend routes.
  * @module StripeMethodCardForm
  * @author Tom Söderlund
  */
