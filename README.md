@@ -22,8 +22,9 @@ See also https://github.com/tomsoderlund/react-zeroconfig-components
       - [ ] Minimal form for returning customers (known stripeCustomerId)
     - [X] Recurring subscriptions
     - [ ] [VAT support](https://stripe.com/docs/api/customer_tax_ids/create?lang=node) and [tax rates](https://stripe.com/docs/api/subscriptions/create#tax_rates)
+    - [ ] Field `metadata` on one-time payments (now only subscriptions)
     - [x] UX: Select either “one row” or “split fields” layout (merge StripeMethodCardForm*)
-    - [ ] Klarna payments
+    - [x] Klarna payments
   - [ ] Paddle
   - [ ] ChargeBee
 - [x] API mockup on http://localhost:6007/api/stripe (see [“Example server backend”](#example-server-backend) below)
@@ -68,6 +69,12 @@ See [“Example server backend”](#example-server-backend) below.
 ## Components
 
 See the Storybook stories in `/stories` to see how the components are used in code, including more advanced use cases.
+
+Naming convention: [Provider][Action][Method]Form
+
+- Provider: Stripe, Paddle
+- Action: Payment (one-time), Subscription
+- Method: Card, Klarna
 
 ### StripePaymentCardForm
 
@@ -120,13 +127,25 @@ or:
 
 ![StripeSubscriptionCardForm](docs/StripeSubscriptionCardForm.png)
 
-### StripePaymentKlarnaForm
+### StripeMethodKlarnaForm
 
-Special version of the `StripePaymentCardForm` for Klarna payments.
+This is a special version of the `StripeMethodCardForm` for Klarna payments. There’s also a `StripePaymentKlarnaForm` that includes fields for contact information.
 
-    <StripePaymentKlarnaForm
+**Note:** this component uses Stripe server API, it requires [backend routes](#set-up-server-routes).
+
+    import { StripeMethodKlarnaForm } from 'react-zeroconfig-payments'
+
+    <StripeMethodKlarnaForm
       stripeAppPublicKey={process.env.STRIPE_APP_PUBLIC_KEY}
       stripeCustomerId={process.env.STRIPE_CUSTOMER_ID}
+      contactInfo={{
+        // See https://stripe.com/docs/api/payment_methods/object#payment_method_object-billing_details for all fields
+        email: 'john.doe@tomorroworld.com',
+        address: {
+          country: 'se',
+          postal_code: '11350'
+        }
+      }}
       amountDecimals={99.00}
       currency='sek'
       onResponse={handleResponse}
@@ -135,7 +154,8 @@ Special version of the `StripePaymentCardForm` for Klarna payments.
 
 Extra props needed:
 
-- returnUrl: where to redirect after completing the Klarna checkout screen (a simple test page is set up on http://localhost:6007/api/klarna/return_url)
+- `contactInfo`: Klarna needs at least email and country. Also, country needs to match the currency.
+- `returnUrl`: where to redirect after completing/cancelling the Klarna checkout screen (a simple test page is set up on http://localhost:6007/api/klarna/return_url)
 
 ### StripeMethodCardForm
 
