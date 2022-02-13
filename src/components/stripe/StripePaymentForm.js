@@ -74,6 +74,7 @@ const StripePaymentForm = ({
     // Update customer
     const { email, name } = contactInfo
     const newCustomer = await createOrUpdateCustomer({ email, name })
+    // If customer has changed, create/update the PaymentIntent
     if (newCustomer.id !== customer?.id) await createOrUpdatePaymentIntent({ customer: newCustomer.id })
 
     // Confirm payment
