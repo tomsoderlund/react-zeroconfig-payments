@@ -23,8 +23,8 @@ const Template = (props) => {
   return (
     <>
       <blockquote>
-        Stripe Customer ID: {props.stripeCustomerId || '(not set)'}<br />
-        Contact info: {JSON.stringify(props.contactInfo, undefined, 2)}
+        Stripe Customer ID: <strong>{props.stripeCustomerId || '(not set)'}</strong><br />
+        Contact info: <strong>{JSON.stringify(props.contactInfo, undefined, 2)}</strong>
       </blockquote>
 
       <StripeMethodKlarnaForm
