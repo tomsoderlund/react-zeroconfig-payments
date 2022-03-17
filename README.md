@@ -196,13 +196,13 @@ This is a special version of the `StripeMethodCardForm` for Klarna payments. The
 Extra props needed:
 
 - `contactInfo`: Klarna needs at least email and country. Also, country needs to match the currency.
-- `returnUrl`: where to redirect after completing/cancelling the Klarna checkout screen (a simple test page is set up on http://localhost:6007/api/klarna/return_url). The returnUrl will get some query parameters from Klarna:
+- `returnUrl`: where to redirect after completing/cancelling the Klarna checkout screen (a simple test page is set up on `http://localhost:6007/api/klarna/return_url`). The `returnUrl` will receive some URL query parameters from Klarna:
 
-    query: {
-      payment_intent: 'pi_3KeGxxxxx',
-      payment_intent_client_secret: 'pi_3KeGxxxxx_secret_k7Utxxxxx',
-      redirect_status: 'succeeded'
-    }
+	    query: {
+	      payment_intent: 'pi_3KeGxxxxx',
+	      payment_intent_client_secret: 'pi_3KeGxxxxx_secret_k7Utxxxxx',
+	      redirect_status: 'succeeded'
+	    }
 
 ## Example server backend
 
@@ -218,6 +218,8 @@ NOTE: you need to restart `yarn dev` if you modify `stripeServer.js`.
 ## Styling
 
 Styling is optional, you can use `styled-components` or similar.
+
+Stripe card fields needs their special styling, see `stripeOptions.js`.
 
 
 ## Developing components
