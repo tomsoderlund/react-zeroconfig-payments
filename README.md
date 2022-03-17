@@ -21,6 +21,7 @@ See also https://github.com/tomsoderlund/react-zeroconfig-components
       - [ ] Field `metadata` on one-time payments (now only subscriptions)
       - [ ] Support for stripePriceId/stripeProductId
       - [ ] Minimal form for returning customers (known stripeCustomerId)
+      - [ ] Save card for future use: https://stripe.com/docs/payments/save-and-reuse
     - [X] Recurring subscriptions
     - [ ] [VAT support](https://stripe.com/docs/api/customer_tax_ids/create?lang=node) and [tax rates](https://stripe.com/docs/api/subscriptions/create#tax_rates)
   - [x] Stripe Klarna payments
