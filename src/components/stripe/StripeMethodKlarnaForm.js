@@ -86,6 +86,7 @@ const StripeMethodKlarnaForm = ({
           payment_method: {
             billing_details: { email, phone, address }
           },
+          // Return from Klarna page with query: { payment_intent, payment_intent_client_secret, redirect_status }
           return_url: returnUrl
         }
       )
