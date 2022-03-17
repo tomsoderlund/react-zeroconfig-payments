@@ -66,8 +66,16 @@ const stripeMockupServerHandler = (router) => {
   //   async (req, res) => res.send(await stripe.subscriptions.del(req.params.id)), { req, res }
   // ))
 
-  // Klarna post-payment
-  // query: { payment_intent, payment_intent_client_secret, redirect_status }
+  /*
+    Klarna post-payment
+
+    Query parameters:
+      {
+        payment_intent: 'pi_3KeGxxxxx',
+        payment_intent_client_secret: 'pi_3KeGxxxxx_secret_k7Utxxxxx',
+        redirect_status: 'succeeded'
+      }
+  */
   router.get('/api/klarna/return_url', (req, res) => handleRestRequest(
     async (req, res) => {
       const paymentIntent = await stripe.paymentIntents.retrieve(req.query.payment_intent)

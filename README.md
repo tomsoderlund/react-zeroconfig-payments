@@ -37,6 +37,23 @@ See also https://github.com/tomsoderlund/react-zeroconfig-components
   - [ ] Storybook site published to GitHub Pages
 
 
+## Stripe payment flow
+
+One-time payments (https://dashboard.stripe.com/payments):
+
+1. Create a Stripe customer
+1. Create a payment intent
+1. Get payment method from the browser (credit card or Klarna checkout)
+1. Confirm card payment
+
+Subscriptions (https://dashboard.stripe.com/subscriptions):
+
+1. Create a Stripe customer
+1. Get payment method from the browser
+1. Set up the payment method on Stripe
+1. Create a subscription
+
+
 ## Installation
 
     yarn add react-zeroconfig-payments  # or: npm install react-zeroconfig-payments
@@ -178,25 +195,13 @@ This is a special version of the `StripeMethodCardForm` for Klarna payments. The
 Extra props needed:
 
 - `contactInfo`: Klarna needs at least email and country. Also, country needs to match the currency.
-- `returnUrl`: where to redirect after completing/cancelling the Klarna checkout screen (a simple test page is set up on http://localhost:6007/api/klarna/return_url)
+- `returnUrl`: where to redirect after completing/cancelling the Klarna checkout screen (a simple test page is set up on http://localhost:6007/api/klarna/return_url). The returnUrl will get some query parameters from Klarna:
 
-
-## Stripe payment flow
-
-One-time payments (https://dashboard.stripe.com/payments):
-
-1. Create a Stripe customer
-1. Create a payment intent
-1. Get payment method from the browser (credit card or Klarna checkout)
-1. Confirm card payment
-
-Subscriptions (https://dashboard.stripe.com/subscriptions):
-
-1. Create a Stripe customer
-1. Get payment method from the browser
-1. Set up the payment method on Stripe
-1. Create a subscription
-
+    query: {
+      payment_intent: 'pi_3KeGxxxxx',
+      payment_intent_client_secret: 'pi_3KeGxxxxx_secret_k7Utxxxxx',
+      redirect_status: 'succeeded'
+    }
 
 ## Example server backend
 
